@@ -3,291 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karo Plus Iraq | Professional Digital Solutions</title>
+    <title>Karo Plus Iraq | Professional Business Solutions</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
         
         *{margin:0;padding:0;box-sizing:border-box}
         
         :root{
-            --primary:#1e3a8a;
-            --secondary:#1e40af;
+            --primary:#0f172a;
+            --secondary:#1e293b;
             --accent:#3b82f6;
-            --dark:#0f172a;
-            --gray-50:#f8fafc;
-            --gray-100:#f1f5f9;
-            --gray-200:#e2e8f0;
-            --gray-600:#475569;
-            --gray-800:#1e293b;
+            --accent2:#8b5cf6;
+            --gold:#fbbf24;
+            --glass:rgba(255,255,255,0.1);
+            --glass-border:rgba(255,255,255,0.2);
+            --text:#0f172a;
+            --text-light:#64748b;
             --white:#ffffff;
+            --bg:#f8fafc;
         }
+        
+        html{scroll-behavior:smooth}
         
         body{
             font-family:'Noto Sans Arabic',sans-serif;
-            background:var(--gray-50);
-            color:var(--gray-800);
-            line-height:1.6;
+            background:var(--bg);
+            color:var(--text);
+            overflow-x:hidden;
+            perspective:1000px;
+        }
+        
+        /* 3D Animated Background */
+        .bg-3d{
+            position:fixed;
+            inset:0;
+            z-index:0;
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 25%,#f093fb 50%,#4facfe 75%,#00f2fe 100%);
+            background-size:400% 400%;
+            animation:gradientFlow 20s ease infinite;
+            opacity:0.08;
+        }
+        
+        @keyframes gradientFlow{
+            0%,100%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+        }
+        
+        /* Floating 3D Shapes */
+        .shape{
+            position:fixed;
+            border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;
+            filter:blur(60px);
+            opacity:0.15;
+            animation:float3D 25s ease-in-out infinite;
+            z-index:0;
+        }
+        
+        .shape1{
+            width:500px;
+            height:500px;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            top:-200px;
+            right:-200px;
+        }
+        
+        .shape2{
+            width:400px;
+            height:400px;
+            background:linear-gradient(135deg,var(--gold),var(--accent));
+            bottom:-150px;
+            left:-150px;
+            animation-delay:-12s;
+        }
+        
+        @keyframes float3D{
+            0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+            25%{transform:translate3d(50px,-80px,50px) rotate(90deg) scale(1.1)}
+            50%{transform:translate3d(-30px,40px,100px) rotate(180deg) scale(0.9)}
+            75%{transform:translate3d(40px,60px,50px) rotate(270deg) scale(1.05)}
         }
         
         .container{
-            max-width:1200px;
+            position:relative;
+            z-index:1;
+            max-width:1400px;
             margin:0 auto;
-            padding:0 24px;
+            padding:0 30px;
         }
         
-        /* Header */
+        /* Glass Header */
         header{
-            background:var(--white);
-            border-bottom:3px solid var(--primary);
-            box-shadow:0 2px 10px rgba(0,0,0,0.05);
             position:sticky;
             top:0;
-            z-index:100;
+            z-index:1000;
+            background:rgba(255,255,255,0.8);
+            backdrop-filter:blur(20px) saturate(180%);
+            border-bottom:1px solid var(--glass-border);
+            box-shadow:0 8px 32px rgba(0,0,0,0.08);
+            transform:translateZ(50px);
         }
         
         .header-content{
             display:flex;
             justify-content:space-between;
             align-items:center;
-            padding:20px 0;
+            padding:22px 0;
         }
         
         .logo{
             display:flex;
             align-items:center;
-            gap:12px;
+            gap:15px;
+            cursor:pointer;
+            transition:0.4s;
+        }
+        
+        .logo:hover{
+            transform:translateZ(20px) scale(1.05);
         }
         
         .logo-icon{
-            width:45px;
-            height:45px;
+            width:52px;
+            height:52px;
             background:linear-gradient(135deg,var(--primary),var(--secondary));
-            border-radius:8px;
+            border-radius:14px;
             display:flex;
             align-items:center;
             justify-content:center;
             color:var(--white);
             font-weight:700;
-            font-size:20px;
+            font-size:22px;
+            box-shadow:0 10px 30px rgba(15,23,42,0.3);
+            transform:rotateX(10deg) rotateY(-10deg);
+            transition:0.4s;
+        }
+        
+        .logo:hover .logo-icon{
+            transform:rotateX(0deg) rotateY(0deg) scale(1.1);
         }
         
         .logo-text h1{
-            font-size:22px;
+            font-size:24px;
             font-weight:700;
-            color:var(--dark);
+            color:var(--primary);
             letter-spacing:-0.5px;
         }
         
         .logo-text p{
-            font-size:12px;
-            color:var(--gray-600);
+            font-size:11px;
+            color:var(--text-light);
             font-weight:500;
+            letter-spacing:1px;
         }
         
         nav ul{
             display:flex;
-            gap:40px;
+            gap:8px;
             list-style:none;
         }
         
         nav a{
-            color:var(--gray-800);
+            color:var(--text);
             text-decoration:none;
             font-weight:600;
             font-size:15px;
-            transition:0.2s;
-            position:relative;
-        }
-        
-        nav a:hover{
-            color:var(--primary);
-        }
-        
-        nav a::after{
-            content:'';
-            position:absolute;
-            bottom:-5px;
-            right:0;
-            width:0;
-            height:2px;
-            background:var(--primary);
+            padding:12px 24px;
+            border-radius:10px;
             transition:0.3s;
+            position:relative;
+            display:block;
         }
         
-        nav a:hover::after{
-            width:100%;
+        nav a:hover,nav a.active{
+            background:var(--primary);
+            color:var(--white);
+            transform:translateY(-2px);
+            box-shadow:0 8px 20px rgba(15,23,42,0.2);
+        }
+        
+        /* Pages */
+        .page{
+            display:none;
+            animation:pageSlideIn 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        
+        .page.active{
+            display:block;
+        }
+        
+        @keyframes pageSlideIn{
+            from{
+                opacity:0;
+                transform:translateY(30px) rotateX(-10deg);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0) rotateX(0);
+            }
         }
         
         /* Hero Section */
         .hero{
             background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 100%);
             color:var(--white);
-            padding:100px 0 80px 0;
+            padding:120px 0 100px 0;
             position:relative;
             overflow:hidden;
+            transform-style:preserve-3d;
         }
         
-        .hero::before{
+        .hero::after{
             content:'';
             position:absolute;
-            top:0;
-            right:0;
-            width:50%;
-            height:100%;
-            background:rgba(255,255,255,0.03);
-            clip-path:polygon(20% 0,100% 0,100% 100%,0 100%);
+            bottom:0;
+            left:0;
+            width:100%;
+            height:100px;
+            background:linear-gradient(to top,var(--bg),transparent);
         }
         
         .hero-content{
             position:relative;
             z-index:1;
             display:grid;
-            grid-template-columns:1.2fr 1fr;
-            gap:60px;
+            grid-template-columns:1.3fr 1fr;
+            gap:80px;
             align-items:center;
         }
         
         .hero-text h2{
-            font-size:48px;
+            font-size:56px;
             font-weight:700;
-            margin-bottom:20px;
-            line-height:1.3;
+            margin-bottom:25px;
+            line-height:1.2;
+            animation:fadeInUp 0.8s ease;
+        }
+        
+        @keyframes fadeInUp{
+            from{opacity:0;transform:translateY(40px)}
+            to{opacity:1;transform:translateY(0)}
         }
         
         .hero-text p{
-            font-size:18px;
+            font-size:19px;
             opacity:0.9;
-            margin-bottom:35px;
-            font-weight:400;
+            margin-bottom:40px;
+            line-height:1.8;
+            animation:fadeInUp 0.8s ease 0.2s backwards;
+        }
+        
+        .btn-group{
+            display:flex;
+            gap:20px;
+            animation:fadeInUp 0.8s ease 0.4s backwards;
+        }
+        
+        .btn{
+            padding:18px 45px;
+            border:none;
+            border-radius:12px;
+            font-size:16px;
+            font-weight:600;
+            font-family:'Noto Sans Arabic',sans-serif;
+            cursor:pointer;
+            transition:0.4s;
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .btn::before{
+            content:'';
+            position:absolute;
+            top:50%;
+            left:50%;
+            width:0;
+            height:0;
+            border-radius:50%;
+            background:rgba(255,255,255,0.3);
+            transform:translate(-50%,-50%);
+            transition:0.6s;
+        }
+        
+        .btn:hover::before{
+            width:300px;
+            height:300px;
         }
         
         .btn-primary{
             background:var(--white);
             color:var(--primary);
-            padding:16px 40px;
-            border:none;
-            border-radius:6px;
-            font-size:16px;
-            font-weight:600;
-            font-family:'Noto Sans Arabic',sans-serif;
-            cursor:pointer;
-            transition:0.3s;
-            display:inline-flex;
-            align-items:center;
-            gap:10px;
+            box-shadow:0 15px 40px rgba(0,0,0,0.2);
         }
         
         .btn-primary:hover{
-            transform:translateY(-2px);
-            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+            transform:translateY(-3px) translateZ(20px);
+            box-shadow:0 20px 50px rgba(0,0,0,0.3);
         }
         
-        .hero-stats{
+        .btn-secondary{
+            background:rgba(255,255,255,0.15);
+            backdrop-filter:blur(10px);
+            color:var(--white);
+            border:2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-secondary:hover{
+            background:rgba(255,255,255,0.25);
+            transform:translateY(-3px);
+        }
+        
+        /* 3D Cards Grid */
+        .hero-cards{
             display:grid;
             grid-template-columns:repeat(2,1fr);
             gap:20px;
+            animation:fadeInUp 0.8s ease 0.6s backwards;
         }
         
-        .stat-card{
-            background:rgba(255,255,255,0.1);
-            backdrop-filter:blur(10px);
-            border:1px solid rgba(255,255,255,0.2);
-            padding:30px;
-            border-radius:12px;
+        .glass-card-3d{
+            background:var(--glass);
+            backdrop-filter:blur(20px) saturate(180%);
+            border:1px solid var(--glass-border);
+            padding:35px 30px;
+            border-radius:20px;
+            box-shadow:0 20px 60px rgba(0,0,0,0.3);
+            transition:0.4s;
+            transform-style:preserve-3d;
         }
         
-        .stat-number{
-            font-size:42px;
+        .glass-card-3d:hover{
+            transform:translateY(-10px) rotateX(5deg) rotateY(-5deg) translateZ(30px);
+            box-shadow:0 30px 80px rgba(0,0,0,0.4);
+        }
+        
+        .card-number{
+            font-size:48px;
             font-weight:700;
-            margin-bottom:8px;
+            margin-bottom:10px;
         }
         
-        .stat-label{
-            font-size:14px;
-            opacity:0.8;
+        .card-label{
+            font-size:15px;
+            opacity:0.9;
         }
         
         /* Section */
         section{
-            padding:80px 0;
+            padding:100px 0;
         }
         
         .section-header{
             text-align:center;
-            margin-bottom:60px;
+            margin-bottom:70px;
         }
         
-        .section-tag{
+        .section-badge{
             display:inline-block;
-            padding:8px 20px;
-            background:var(--gray-100);
-            color:var(--primary);
-            border-radius:6px;
+            padding:10px 25px;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            color:var(--white);
+            border-radius:50px;
             font-size:14px;
             font-weight:600;
-            margin-bottom:15px;
+            margin-bottom:20px;
+            box-shadow:0 8px 25px rgba(59,130,246,0.3);
         }
         
         .section-title{
-            font-size:36px;
+            font-size:42px;
             font-weight:700;
-            color:var(--dark);
-            margin-bottom:15px;
+            color:var(--primary);
+            margin-bottom:18px;
         }
         
         .section-desc{
-            font-size:17px;
-            color:var(--gray-600);
-            max-width:600px;
+            font-size:18px;
+            color:var(--text-light);
+            max-width:650px;
             margin:0 auto;
+            line-height:1.8;
         }
         
         /* Features Grid */
         .features-grid{
             display:grid;
             grid-template-columns:repeat(3,1fr);
-            gap:30px;
+            gap:35px;
         }
         
-        .feature-card{
+        .feature-card-3d{
             background:var(--white);
-            padding:40px 30px;
-            border-radius:12px;
-            border:1px solid var(--gray-200);
-            transition:0.3s;
+            padding:45px 35px;
+            border-radius:20px;
+            border:2px solid var(--gray-200);
+            transition:0.5s;
+            transform-style:preserve-3d;
+            position:relative;
+            overflow:hidden;
         }
         
-        .feature-card:hover{
-            box-shadow:0 20px 40px rgba(0,0,0,0.08);
-            transform:translateY(-5px);
-            border-color:var(--primary);
+        .feature-card-3d::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:5px;
+            background:linear-gradient(90deg,var(--accent),var(--accent2));
+            transform:scaleX(0);
+            transition:0.5s;
         }
         
-        .feature-number{
-            width:50px;
-            height:50px;
-            background:linear-gradient(135deg,var(--primary),var(--secondary));
-            color:var(--white);
-            border-radius:10px;
+        .feature-card-3d:hover::before{
+            transform:scaleX(1);
+        }
+        
+        .feature-card-3d:hover{
+            transform:translateY(-12px) rotateX(5deg) translateZ(20px);
+            box-shadow:0 30px 60px rgba(0,0,0,0.12);
+            border-color:var(--accent);
+        }
+        
+        .feature-icon-3d{
+            width:70px;
+            height:70px;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            border-radius:18px;
             display:flex;
             align-items:center;
             justify-content:center;
-            font-size:20px;
-            font-weight:700;
-            margin-bottom:20px;
+            font-size:32px;
+            margin-bottom:25px;
+            box-shadow:0 15px 35px rgba(59,130,246,0.3);
+            transform:rotateX(15deg) rotateY(-15deg);
+            transition:0.4s;
         }
         
-        .feature-card h3{
-            font-size:20px;
-            font-weight:700;
-            color:var(--dark);
-            margin-bottom:12px;
+        .feature-card-3d:hover .feature-icon-3d{
+            transform:rotateX(0) rotateY(0) scale(1.1);
         }
         
-        .feature-card p{
+        .feature-card-3d h3{
+            font-size:22px;
+            font-weight:700;
+            color:var(--primary);
+            margin-bottom:15px;
+        }
+        
+        .feature-card-3d p{
             font-size:15px;
-            color:var(--gray-600);
-            line-height:1.8;
+            color:var(--text-light);
+            line-height:1.9;
         }
         
         /* Services */
@@ -298,113 +467,213 @@
         .services-grid{
             display:grid;
             grid-template-columns:repeat(4,1fr);
-            gap:25px;
+            gap:30px;
         }
         
-        .service-box{
-            background:var(--gray-50);
-            padding:35px 25px;
-            border-radius:12px;
-            border:2px solid var(--gray-200);
+        .service-card-3d{
+            background:var(--bg);
+            padding:40px 30px;
+            border-radius:18px;
+            border:2px solid transparent;
             text-align:center;
-            transition:0.3s;
+            transition:0.5s;
+            transform-style:preserve-3d;
         }
         
-        .service-box:hover{
-            border-color:var(--primary);
+        .service-card-3d:hover{
             background:var(--white);
+            border-color:var(--accent);
+            transform:translateY(-10px) rotateY(5deg) translateZ(25px);
+            box-shadow:0 25px 50px rgba(0,0,0,0.1);
         }
         
-        .service-box h4{
-            font-size:18px;
+        .service-badge{
+            display:inline-block;
+            padding:6px 16px;
+            background:var(--accent);
+            color:var(--white);
+            border-radius:6px;
+            font-size:12px;
+            font-weight:600;
+            margin-bottom:20px;
+        }
+        
+        .service-card-3d h4{
+            font-size:20px;
             font-weight:700;
-            color:var(--dark);
+            color:var(--primary);
             margin-bottom:15px;
         }
         
         .service-price{
-            font-size:32px;
+            font-size:38px;
             font-weight:700;
-            color:var(--primary);
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
             margin:20px 0;
         }
         
-        .service-box p{
-            font-size:14px;
-            color:var(--gray-600);
-            margin-bottom:20px;
+        .service-features{
+            list-style:none;
+            margin:25px 0;
+            text-align:right;
         }
         
-        .btn-outline{
-            background:transparent;
-            border:2px solid var(--primary);
-            color:var(--primary);
-            padding:12px 30px;
-            border-radius:6px;
+        .service-features li{
+            padding:10px 0;
+            font-size:14px;
+            color:var(--text-light);
+            border-bottom:1px solid var(--gray-200);
+        }
+        
+        .service-features li:last-child{
+            border-bottom:none;
+        }
+        
+        .btn-service{
+            width:100%;
+            padding:14px;
+            background:var(--primary);
+            color:var(--white);
+            border:none;
+            border-radius:10px;
             font-size:15px;
             font-weight:600;
             font-family:'Noto Sans Arabic',sans-serif;
             cursor:pointer;
             transition:0.3s;
-            width:100%;
         }
         
-        .btn-outline:hover{
-            background:var(--primary);
-            color:var(--white);
+        .btn-service:hover{
+            background:var(--secondary);
+            transform:scale(1.05);
         }
         
-        /* Stats Banner */
+        /* Stats */
         .stats-banner{
-            background:var(--dark);
+            background:linear-gradient(135deg,var(--primary),var(--secondary));
             color:var(--white);
-            padding:60px 0;
+            padding:80px 0;
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .stats-banner::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            opacity:0.3;
         }
         
         .stats-row{
             display:grid;
             grid-template-columns:repeat(4,1fr);
-            gap:40px;
+            gap:50px;
             text-align:center;
+            position:relative;
         }
         
         .stat-item h3{
-            font-size:48px;
+            font-size:56px;
             font-weight:700;
-            color:var(--accent);
-            margin-bottom:10px;
+            margin-bottom:12px;
+            animation:countUp 2s ease;
+        }
+        
+        @keyframes countUp{
+            from{opacity:0;transform:scale(0.5)}
+            to{opacity:1;transform:scale(1)}
         }
         
         .stat-item p{
-            font-size:16px;
-            opacity:0.8;
+            font-size:17px;
+            opacity:0.9;
+        }
+        
+        /* Contact */
+        .contact-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:50px;
+            align-items:start;
+        }
+        
+        .contact-info{
+            background:var(--white);
+            padding:50px;
+            border-radius:20px;
+            box-shadow:0 20px 60px rgba(0,0,0,0.08);
+        }
+        
+        .contact-item{
+            display:flex;
+            align-items:start;
+            gap:20px;
+            margin-bottom:30px;
+            padding-bottom:30px;
+            border-bottom:1px solid var(--gray-200);
+        }
+        
+        .contact-item:last-child{
+            border-bottom:none;
+            margin-bottom:0;
+            padding-bottom:0;
+        }
+        
+        .contact-icon{
+            width:55px;
+            height:55px;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            border-radius:14px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:24px;
+            flex-shrink:0;
+        }
+        
+        .contact-details h4{
+            font-size:18px;
+            font-weight:700;
+            color:var(--primary);
+            margin-bottom:8px;
+        }
+        
+        .contact-details p{
+            font-size:15px;
+            color:var(--text-light);
         }
         
         /* Footer */
         footer{
-            background:var(--gray-800);
+            background:var(--primary);
             color:var(--white);
-            padding:60px 0 30px 0;
+            padding:70px 0 30px 0;
+            margin-top:100px;
         }
         
         .footer-grid{
             display:grid;
             grid-template-columns:2fr 1fr 1fr 1fr;
-            gap:50px;
-            margin-bottom:40px;
+            gap:60px;
+            margin-bottom:50px;
         }
         
         .footer-col h4{
-            font-size:18px;
+            font-size:19px;
             font-weight:700;
-            margin-bottom:20px;
-            color:var(--white);
+            margin-bottom:25px;
         }
         
         .footer-col p{
             font-size:14px;
-            opacity:0.7;
-            line-height:1.8;
+            opacity:0.8;
+            line-height:1.9;
         }
         
         .footer-col ul{
@@ -412,18 +681,19 @@
         }
         
         .footer-col ul li{
-            margin-bottom:12px;
+            margin-bottom:14px;
         }
         
         .footer-col ul li a{
-            color:rgba(255,255,255,0.7);
+            color:rgba(255,255,255,0.8);
             text-decoration:none;
             font-size:14px;
             transition:0.2s;
         }
         
         .footer-col ul li a:hover{
-            color:var(--accent);
+            color:var(--white);
+            padding-right:5px;
         }
         
         .footer-bottom{
@@ -431,243 +701,312 @@
             padding-top:30px;
             text-align:center;
             font-size:14px;
-            opacity:0.6;
+            opacity:0.7;
         }
         
         /* Responsive */
-        @media(max-width:968px){
+        @media(max-width:1024px){
             .hero-content{grid-template-columns:1fr}
             .features-grid{grid-template-columns:repeat(2,1fr)}
             .services-grid{grid-template-columns:repeat(2,1fr)}
-            .stats-row{grid-template-columns:repeat(2,1fr)}
-            .footer-grid{grid-template-columns:repeat(2,1fr)}
-            nav ul{display:none}
+            .contact-grid{grid-template-columns:1fr}
         }
         
-        @media(max-width:640px){
-            .hero-text h2{font-size:36px}
+        @media(max-width:768px){
+            .hero-text h2{font-size:40px}
             .features-grid{grid-template-columns:1fr}
             .services-grid{grid-template-columns:1fr}
-            .stats-row{grid-template-columns:1fr}
+            .stats-row{grid-template-columns:repeat(2,1fr)}
             .footer-grid{grid-template-columns:1fr}
+            nav ul{display:none}
+            .btn-group{flex-direction:column}
         }
     </style>
 </head>
 <body>
+    <div class="bg-3d"></div>
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
+                <div class="logo" onclick="showPage('home')">
                     <div class="logo-icon">KP</div>
                     <div class="logo-text">
                         <h1>Karo Plus</h1>
-                        <p>Digital Solutions</p>
+                        <p>BUSINESS SOLUTIONS</p>
                     </div>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#home">سەرەتا</a></li>
-                        <li><a href="#services">خزمەتگوزاری</a></li>
-                        <li><a href="#features">تایبەتمەندی</a></li>
-                        <li><a href="#contact">پەیوەندی</a></li>
+                        <li><a href="#" onclick="showPage('home')" class="nav-link active">سەرەتا</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="nav-link">خزمەتگوزاری</a></li>
+                        <li><a href="#" onclick="showPage('features')" class="nav-link">تایبەتمەندی</a></li>
+                        <li><a href="#" onclick="showPage('about')" class="nav-link">دەربارە</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="nav-link">پەیوەندی</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h2>چارەسەری دیجیتاڵی پرۆفیشناڵ بۆ بازرگانی تۆ</h2>
-                    <p>پێشکەشکردنی باشترین خزمەتگوزاری بە کوالێتی بەرز و نرخی گونجاو لە عێراق</p>
-                    <button class="btn-primary" onclick="window.open('https://t.me/KaroPlusSupport','_blank')">
-                        دەستپێبکە ئێستا
-                    </button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">50K+</div>
-                        <div class="stat-label">کڕیاری چالاک</div>
+    <!-- Page: Home -->
+    <div id="home" class="page active">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2>چارەسەری دیجیتاڵی پرۆفیشناڵ بۆ بازرگانی مۆدێرن</h2>
+                        <p>پێشکەشکردنی باشترین خزمەتگوزاری بە ستانداردی جیهانی لە عێراق. متمانە، کوالێتی، خێرایی.</p>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="showPage('services')">
+                                دەستپێبکە ئێستا
+                            </button>
+                            <button class="btn btn-secondary" onclick="showPage('contact')">
+                                پەیوەندی بە ئێمە
+                            </button>
+                        </div>
+                    <div class="hero-cards">
+                        <div class="glass-card-3d">
+                            <div class="card-number">50K+</div>
+                            <div class="card-label">کڕیاری چالاک</div>
+                        </div>
+                        <div class="glass-card-3d">
+                            <div class="card-number">99.2%</div>
+                            <div class="card-label">ڕێژەی سەرکەوتن</div>
+                        </div>
+                        <div class="glass-card-3d">
+                            <div class="card-number">24/7</div>
+                            <div class="card-label">پشتیوانی</div>
+                        </div>
+                        <div class="glass-card-3d">
+                            <div class="card-number">5+</div>
+                            <div class="card-label">ساڵ ئەزموون</div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">99%</div>
-                        <div class="stat-label">ڕازیبوون</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">تایبەتمەندیەکانمان</div>
+                    <h2 class="section-title">بۆچی Karo Plus هەڵبژێریت؟</h2>
+                    <p class="section-desc">پێشکەشکردنی خزمەتگوزاری پرۆفیشناڵ بە ستانداردی جیهانی</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card-3d">
+                        <div class="feature-icon-3d">⚡</div>
+                        <h3>خێرایی لە جێبەجێکردن</h3>
+                        <p>هەموو داواکاریەکان لە ماوەی 24 کاتژمێردا تەواو دەکرێن بە کوالێتی بەرز و وردەکاری تەواو</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">پشتیوانی</div>
+                    
+                    <div class="feature-card-3d">
+                        <div class="feature-icon-3d">🛡️</div>
+                        <h3>گرەنتی کوالێتی</h3>
+                        <p>گرەنتی 100% لەسەر هەموو خزمەتگوزاریەکانمان لەگەڵ گەڕاندنەوەی پارە</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">5+</div>
-                        <div class="stat-label">ساڵ ئەزموون</div>
+                    
+                    <div class="feature-card-3d">
+                        <div class="feature-icon-3d">💬</div>
+                        <h3>پشتیوانی 24/7</h3>
+                        <p>تیمی پشتیوانی پرۆفیشناڵ بەردەوام ئامادەیە بۆ وەڵامدانەوەی پرسیارەکانتان</p>
+                    </div>
+                    
+                    <div class="feature-card-3d">
+                        <div class="feature-icon-3d">💰</div>
+                        <h3>نرخی کێبڕکێکار</h3>
+                        <p>باشترین نرخ لە بازاڕ لەگەڵ داشکاندنی تایبەت بۆ کڕیاری بەردەوام</p>
+                    </div>
+                    
+                    <div class="feature-card-3d">
+                        <div class="feature-icon-3d">🔒</div>
+                        <h3>ئاسایشی تەواو</h3>
+                        <p>پارەدانی ئارام و پارێزراو لەگەڵ پاراستنی زانیاری کەسی بە تەواوی</p>
+                    </div>
+                    
+                    <div class="feature-card-3d">
+                        <div class="feature-icon-3d">📊</div>
+                        <h3>متمانەی سەلمێنراو</h3>
+                        <p>5+ ساڵ ئەزموون لەگەڵ زیاتر لە 50,000 کڕیاری ڕازی لە سەرانسەری عێراق</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features -->
-    <section id="features">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">تایبەتمەندیەکانمان</div>
-                <h2 class="section-title">بۆچی Karo Plus هەڵبژێریت؟</h2>
-                <p class="section-desc">پێشکەشکردنی خزمەتگوزاری پرۆفیشناڵ بە ستانداردی جیهانی</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-number">01</div>
-                    <h3>خێرایی لە جێبەجێکردن</h3>
-                    <p>هەموو داواکاریەکان لە ماوەی 24 کاتژمێردا تەواو دەکرێن بە کوالێتی بەرز</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-number">02</div>
-                    <h3>گرەنتی کوالێتی</h3>
-                    <p>گرەنتی 100% لەسەر هەموو خزمەتگوزاریەکانمان لەگەڵ گەڕاندنەوەی پارە</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-number">03</div>
-                    <h3>پشتیوانی بەردەوام</h3>
-                    <p>تیمی پشتیوانی پرۆفیشناڵ 24/7 ئامادەیە بۆ وەڵامدانەوەی پرسیارەکانتان</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-number">04</div>
-                    <h3>نرخی کێبڕکێکار</h3>
-                    <p>باشترین نرخ لە بازاڕ لەگەڵ داشکاندنی تایبەت بۆ کڕیاری بەردەوام</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-number">05</div>
-                    <h3>پارەدانی ئارام</h3>
-                    <p>هەموو شێوازەکانی پارەدانی ناوخۆیی و نێودەوڵەتی بەردەستە</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-number">06</div>
-                    <h3>متمانەی تەواو</h3>
-                    <p>5+ ساڵ ئەزموون لەگەڵ زیاتر لە 50,000 کڕیاری ڕازی</p>
+        <!-- Stats Banner -->
+        <section class="stats-banner">
+            <div class="container">
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <h3>50,000+</h3>
+                        <p>کڕیاری ڕازی</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>150,000+</h3>
+                        <p>داواکاری تەواوکراو</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>99.2%</h3>
+                        <p>ڕێژەی سەرکەوتن</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>4.9/5</h3>
+                        <p>هەڵسەنگاندن</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Services -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">خزمەتگوزاریەکان</div>
-                <h2 class="section-title">چارەسەری تەواو بۆ پێداویستیەکانت</h2>
-                <p class="section-desc">هەموو ئەو خزمەتگوزاریانەی پێویستتە لە یەک شوێن</p>
+    <!-- Page: Services -->
+    <div id="services" class="page">
+        <section class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">خزمەتگوزاریەکان</div>
+                    <h2 class="section-title">چارەسەری تەواو بۆ پێداویستیەکانت</h2>
+                    <p class="section-desc">هەموو ئەو خزمەتگوزاریانەی پێویستتە لە یەک شوێن</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card-3d">
+                        <div class="service-badge">بەناوبانگ</div>
+                        <h4>سۆشیال میدیا</h4>
+                        <div class="service-price">$5</div>
+                        <ul class="service-features">
+                            <li>فۆڵۆوەری ڕاستەقینە</li>
+                            <li>لایک و کۆمێنت</li>
+                            <li>بینینی ڤیدیۆ</li>
+                            <li>گەشەکردنی خێرا</li>
+                        </ul>
+                        <button class="btn-service" onclick="orderService('Social Media')">داوا بکە</button>
+                    </div>
+                    
+                    <div class="service-card-3d">
+                        <div class="service-badge">نوێ</div>
+                        <h4>یاریە ئەلیکترۆنیەکان</h4>
+                        <div class="service-price">$10</div>
+                        <ul class="service-features">
+                            <li>شداتی یاری</li>
+                            <li>ئەکاونتی پریمیوم</li>
+                            <li>ئایتم و سکین</li>
+                            <li>بەرزکردنەوەی ئاست</li>
+                        </ul>
+                        <button class="btn-service" onclick="orderService('Gaming')">داوا بکە</button>
+                    </div>
+                    
+                    <div class="service-card-3d">
+                        <div class="service-badge">زۆر داواکراو</div>
+                        <h4>کارتی پارەدان</h4>
+                        <div class="service-price">$15</div>
+                        <ul class="service-features">
+                            <li>Google Play</li>
+                            <li>Apple Gift Card</li>
+                            <li>Steam Wallet</li>
+                            <li>PlayStation Store</li>
+                        </ul>
+                        <button class="btn-service" onclick="orderService('Gift Cards')">داوا بکە</button>
+                    </div>
+                    
+                    <div class="service-card-3d">
+                        <div class="service-badge">تایبەت</div>
+                        <h4>سەبسکرایبشن</h4>
+                        <div class="service-price">$8</div>
+                        <ul class="service-features">
+                            <li>Netflix Premium</li>
+                            <li>Spotify Premium</li>
+                            <li>YouTube Premium</li>
+                            <li>Disney+ & More</li>
+                        </ul>
+                        <button class="btn-service" onclick="orderService('Subscription')">داوا بکە</button>
+                    </div>
+                </div>
             </div>
-            
-            <div class="services-grid">
-                <div class="service-box">
-                    <h4>سۆشیال میدیا</h4>
-                    <div class="service-price">$5</div>
-                    <p>فۆڵۆوەر، لایک، بینین، کۆمێنت</p>
-                    <button class="btn-outline">زیاتر بزانە</button>
-                </div>
-                
-                <div class="service-box">
-                    <h4>یاریە ئەلیکترۆنیەکان</h4>
-                    <div class="service-price">$10</div>
-                    <p>شدات، ئەکاونت، ئایتم، سکین</p>
-                    <button class="btn-outline">زیاتر بزانە</button>
-                </div>
-                
-                <div class="service-box">
-                    <h4>کارتی پارەدان</h4>
-                    <div class="service-price">$15</div>
-                    <p>Google Play, Apple, Steam, PSN</p>
-                    <button class="btn-outline">زیاتر بزانە</button>
-                </div>
-                
-                <div class="service-box">
-                    <h4>سەبسکرایبشن</h4>
-                    <div class="service-price">$8</div>
-                    <p>Netflix, Spotify, YouTube Premium</p>
-                    <button class="btn-outline">زیاتر بزانە</button>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Stats Banner -->
-    <section class="stats-banner">
-        <div class="container">
-            <div class="stats-row">
-                <div class="stat-item">
-                    <h3>50,000+</h3>
-                    <p>کڕیاری ڕازی</p>
+    <!-- Page: About -->
+    <div id="about" class="page">
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">دەربارەی ئێمە</div>
+                    <h2 class="section-title">Karo Plus Iraq</h2>
+                    <p class="section-desc">پێشەنگی خزمەتگوزاری دیجیتاڵی لە عێراق لە 2019ەوە</p>
                 </div>
-                <div class="stat-item">
-                    <h3>150,000+</h3>
-                    <p>داواکاری تەواوکراو</p>
-                </div>
-                <div class="stat-item">
-                    <h3>99.2%</h3>
-                    <p>ڕێژەی سەرکەوتن</p>
-                </div>
-                <div class="stat-item">
-                    <h3>4.9/5</h3>
-                    <p>هەڵسەنگاندن</p>
+                
+                <div class="feature-card-3d" style="max-width:900px;margin:0 auto;">
+                    <h3 style="font-size:28px;margin-bottom:20px;color:var(--primary)">چیرۆکی ئێمە</h3>
+                    <p style="font-size:16px;line-height:2;color:var(--text-light);margin-bottom:20px">
+                        Karo Plus لە ساڵی 2019 دامەزراوە بە ئامانجی پێشکەشکردنی باشترین خزمەتگوزاری دیجیتاڵی لە عێراق. 
+                        لەو کاتەوە تا ئێستا، توانیومانە متمانەی زیاتر لە 50,000 کڕیار بەدەست بهێنین.
+                    </p>
+                    <p style="font-size:16px;line-height:2;color:var(--text-light)">
+                        تیمێکی پرۆفیشناڵ و شارەزامان هەیە کە 24/7 ئامادەیە بۆ خزمەتکردنت. ئامانجی ئێمە دابینکردنی 
+                        خزمەتگوزاری بە کوالێتی بەرز، نرخی گونجاو، و خێرایی بێ وێنەیە.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Karo Plus Iraq</h4>
-                    <p>پێشەنگی خزمەتگوزاری دیجیتاڵی لە عێراق. متمانە، کوالێتی، خێرایی.</p>
-                    <p style="margin-top:20px">کاتی کار: شەممە - پێنجشەممە<br>9:00 بەیانی - 12:00 شەو</p>
+    <!-- Page: Contact -->
+    <div id="contact" class="page">
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">پەیوەندی</div>
+                    <h2 class="section-title">پەیوەندیمان پێوە بکە</h2>
+                    <p class="section-desc">تیمەکەمان ئامادەیە بۆ وەڵامدانەوەی هەموو پرسیارێکت</p>
                 </div>
                 
-                <div class="footer-col">
-                    <h4>خزمەتگوزاری</h4>
-                    <ul>
-                        <li><a href="#">سۆشیال میدیا</a></li>
-                        <li><a href="#">یاریەکان</a></li>
-                        <li><a href="#">کارتی پارەدان</a></li>
-                        <li><a href="#">سەبسکرایبشن</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>کۆمپانیا</h4>
-                    <ul>
-                        <li><a href="#">دەربارەی ئێمە</a></li>
-                        <li><a href="#">مەرج و ڕێساکان</a></li>
-                        <li><a href="#">سیاسەتی تایبەتمەندی</a></li>
-                        <li><a href="#">پرسیارە باوەکان</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>پەیوەندی</h4>
-                    <ul>
-                        <li><a href="https://t.me/KaroPlusSupport">Telegram Support</a></li>
-                        <li><a href="#">WhatsApp: +964 XXX</a></li>
-                        <li><a href="#">Email: info@karoplus.iq</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>Karo Plus Iraq © 2026 | هەموو مافێکی پارێزراوە</p>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-details">
+                                <h4>Telegram</h4>
+                                <p>@KaroPlusSupport</p>
+                                <p style="font-size:13px;margin-top:5px">خێراترین ڕێگای پەیوەندی</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-details">
+                                <h4>WhatsApp</h4>
+                                <p>+964 XXX XXX XXXX</p>
+                                <p style="font-size:13px;margin-top:5px">24/7 بەردەستە</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>support@karoplus.iq</p>
+                                <p style="font-size:13px;margin-top:5px">وەڵام لە 24 کاتژمێردا</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">🕐</div>
+                            <div class="contact-details">
+                                <h4>کاتەکانی کار</h4>
+                                <p>شەممە - پێنجشەممە: 9:00 - 00:00</p>
+                                <p>هەینی: 14:00 - 00:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card-3d">
+                        <h3 style="font-size:24px;margin-bottom:20px;color:var(--primary)">داواکاری خێرا</h3>
+                        <p style="margin-bottom:25px;color:var(--text-light)">
+                           
