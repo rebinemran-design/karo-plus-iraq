@@ -3,15 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARO PLUS | کارۆ پڵەس</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>KARO PLUS | پڵەس کارۆ</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;600;700;900&display=swap');
-        :root { --neon: #FFC107; --dark: #030308; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans Arabic', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
-        .bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(ellipse at 20% 30%, #1a1a2e 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, #0f1a2e 0%, transparent 50%), var(--dark); }
-        .container { position: relative; z-index: 2; max-width: 480px; margin: 0 auto; padding: 0 16px; }
-        .header { padding: 40px 0 20px 0; text-align: center; perspective: 1000px; }
-        .logo { font-size: 48px; font-weight: 900; letter-spacing: 4px; background: linear-gradient(
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Arabic', sans-serif;
+        }
+        
+        body {
+            background: #0a0a0f;
+            background-image: 
+                radial-gradient(circle at 20% 50%, #1a0033 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, #001a33 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, #33001a 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+       .lang-switcher {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+       .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+       .lang-btn:hover,.lang-btn.active {
+            background: linear-gradient(45deg, #00dbde, #fc00ff);
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+        
+       .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+       .header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00dbde, #fc00ff, #00dbde);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s linear infinite;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes gradient {
+            to { background-position: 200% center; }
+        }
+        
+       .header p {
+            font-size: 1.3rem;
+            color: #b8b8d1;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+       .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            width: 100%;
+            perspective: 1000px;
+        }
+        
+       .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: cardIn 0.6s ease backwards;
+        }
+        
+       .card:nth-child(1) { animation-delay: 0.1s; }
+       .card:nth-child(2) { animation-delay: 0.2s; }
+       .card:nth-child(3) { animation-delay: 0.3s; }
+       .card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(50px) rotateX(-10deg); }
+            to { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+        
+       .card:hover {
+            transform: translateY(-15px) rotateX(5deg) scale(1.03);
+            box-shadow: 0 20px 60px rgba(252, 0, 255, 0.5);
+            border: 1px solid rgba(252, 0, 255, 0.6);
+        }
+        
+       .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 219, 222, 0.3), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+       .card:hover::after { opacity: 1; }
+        
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        
+       .card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+       .card.days {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+       .card.price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 25px;
+        }
+        
+       .card.price span {
+            font-size: 1rem;
+            color: #b8b8d1;
+            font-weight: 400;
+        }
+        
+       .card button {
+            background: linear-gradient(45deg, #00dbde, #fc00ff);
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+       .card button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+       .card button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+       .card button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(252, 0, 255, 0.8);
+        }
+        
+       .popular {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+       .footer {
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        [dir="ltr"].lang-switcher { left: auto; right: 20px; }
+        [dir="ltr"].popular { right: auto; left: 20px; }
+        
+        @media (max-width: 768px) {
+           .header h1 { font-size: 2.5rem; }
+           .cards { grid-template-columns: 1fr; }
+           .lang-switcher { top: 10px; left: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('ku')">کوردی</button>
+        <button class="lang-btn" onclick="setLang('ar')">عربي</button>
+        <button class="lang-btn" onclick="setLang('en')">English</button>
+    </div>
+
+    <div class="header">
+        <h1 data-lang="title">KARO PLUS</h1>
+        <p data-lang="subtitle">بەخێربێیت بۆ باشترین خزمەتگوزاری</p>
+    </div>
+    
+    <div class="cards">
+        <div class="card">
+            <div class="card-content">
+                <div class="days" data-lang="days30">30 ڕۆژ</div>
+                <div class="price">10,000 <span data-lang="currency">دینار</span></div>
+                <button onclick="buy('30')" data-lang="buy">کڕینی ئێستا</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="popular" data-lang="popular">زۆرترین کڕین</div>
+            <div class="card-content">
+                <div class="days" data-lang="days90">90 ڕۆژ</div>
+                <div class="price">25,000 <span data-lang="currency">دینار</span></div>
+                <button onclick="buy('90')" data-lang="buy">کڕینی ئێستا</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                <div class="days" data-lang="days180">180 ڕۆژ</div>
+                <div class="price">45,000 <span data-lang="currency">دینار</span></div>
+                <button onclick="buy('180')" data-lang="buy">کڕینی ئێستا</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                <div class="days" data-lang="days365">365 ڕۆژ</div>
+                <div class="price">80,000 <span data-lang="currency">دینار</span></div>
+                <button onclick="buy('365')" data-lang="buy">کڕینی ئێستا</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer" data-lang="footer">
+        © 2026 KARO PLUS - هەموو مافێکی پارێزراوە
+    </div>
+    
+    <script>
+        const translations = {
+            ku: {
+                title: "KARO PLUS",
+                subtitle: "بەخێربێیت بۆ باشترین خزمەتگوزاری",
+                days30: "30 ڕۆژ",
+                days90: "90 ڕۆژ", 
+                days180: "180 ڕۆژ",
+                days365: "365 ڕۆژ",
+                currency: "دینار",
+                buy: "کڕینی ئێستا",
+                popular: "زۆرترین کڕین",
+                footer: "© 2026 KARO PLUS - هەموو مافێکی پارێزراوە",
+                alert: "بۆ کڕینی پاکێجی {days} ڕۆژ پەیوەندیمان پێوە بکە"
+            },
+            ar: {
+                title: "KARO PLUS",
+                subtitle: "أهلاً بك في أفضل خدمة",
+                days30: "30 يوم",
+                days90: "90 يوم",
+                days180: "180 يوم", 
+                days365: "365 يوم",
+                currency: "دينار",
+                buy: "اشترِ الآن",
+                popular: "الأكثر شراءً",
+                footer: "© 2026 KARO PLUS - جميع الحقوق محفوظة",
+                alert: "للشراء باقة {days} يوم تواصل معنا"
+            },
+            en: {
+                title: "KARO PLUS",
+                subtitle: "Welcome to the Best Service",
+                days30: "30 Days",
+                days90: "90 Days",
+                days180: "180 Days",
+                days365: "365 Days", 
+                currency: "IQD",
+                buy: "Buy Now",
+                popular: "Most Popular",
+                footer: "© 2026 KARO PLUS - All Rights Reserved",
+                alert: "Contact us to buy the {days} days package"
+            }
+        };
+        
+        let currentLang = 'ku';
+        
+        function setLang(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'en'? 'ltr' : 'rtl';
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+        
+        function buy(days) {
+            const msg = translations[currentLang].alert.replace('{days}', days);
+            alert(msg);
+        }
+    </script>
+</body>
+</html>
