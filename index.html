@@ -2,429 +2,299 @@
 <html lang="ku" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Karo Plus Iraq - Professional Digital Business Solutions">
-    <title>Karo Plus Iraq v3 | Professional Solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Karo Plus Iraq - Telegram Mini App">
+    <title>Karo Plus Iraq | Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap');
         
         *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
         
         :root{
+            --tg-theme-bg-color:#f8fafc;
+            --tg-theme-text-color:#0f172a;
+            --tg-theme-hint-color:#64748b;
+            --tg-theme-button-color:#3b82f6;
+            --tg-theme-button-text-color:#ffffff;
             --p1:#0f172a;--p2:#1e293b;--accent:#3b82f6;--accent2:#8b5cf6;
-            --gold:#fbbf24;--glass:rgba(255,255,255,0.1);--glass-b:rgba(255,255,255,0.2);
-            --text:#0f172a;--text2:#64748b;--white:#fff;--bg:#f8fafc;
+            --gold:#fbbf24;--glass:rgba(255,255,255,0.12);--glass-b:rgba(255,255,255,0.2);
         }
         
-        html{scroll-behavior:smooth;overflow-x:hidden;width:100%;max-width:100vw}
+        html{scroll-behavior:smooth;overflow-x:hidden;width:100vw}
         
         body{
             font-family:'Noto Sans Arabic',sans-serif;
-            background:var(--bg);
-            color:var(--text);
+            background:var(--tg-theme-bg-color,#f8fafc);
+            color:var(--tg-theme-text-color,#0f172a);
             overflow-x:hidden;
-            width:100%;
+            width:100vw;
             max-width:100vw;
-            position:relative;
+            min-height:100vh;
+            min-height:100dvh;
         }
         
-        /* 3D Animated Background */
+        /* Telegram Theme Colors */
+        .tg-bg{background:var(--tg-theme-bg-color)}
+        .tg-text{color:var(--tg-theme-text-color)}
+        .tg-hint{color:var(--tg-theme-hint-color)}
+        
+        /* 3D Background */
         .bg-3d{
             position:fixed;inset:0;z-index:0;
-            background:linear-gradient(135deg,#667eea 0%,#764ba2 20%,#f093fb 40%,#4facfe 60%,#00f2fe 80%,#667eea 100%);
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 25%,#f093fb 50%,#4facfe 75%,#00f2fe 100%);
             background-size:600% 600%;
-            animation:bgFlow 30s ease infinite;
-            opacity:0.05;
+            animation:bgFlow 35s ease infinite;
+            opacity:0.04;
             pointer-events:none;
         }
         @keyframes bgFlow{
             0%,100%{background-position:0% 50%}
-            25%{background-position:100% 50%}
-            50%{background-position:100% 100%}
-            75%{background-position:0% 100%}
+            50%{background-position:100% 50%}
         }
         
-        /* Floating 3D Shapes */
         .shape{
             position:fixed;border-radius:40% 60% 50%/60% 40% 60% 50%;
-            filter:blur(80px);opacity:0.1;
-            animation:float3D 35s ease-in-out infinite;
+            filter:blur(90px);opacity:0.08;
+            animation:float3D 40s ease-in-out infinite;
             z-index:0;pointer-events:none;
         }
-        .s1{width:600px;height:600px;background:linear-gradient(135deg,var(--accent),var(--accent2));top:-300px;right:-300px}
-        .s2{width:500px;height:500px;background:linear-gradient(135deg,var(--gold),var(--accent));bottom:-250px;left:-250px;animation-delay:-18s}
-        .s3{width:450px;height:450px;background:linear-gradient(135deg,#f093fb,var(--accent2));top:40%;left:40%;animation-delay:-9s}
+        .s1{width:400px;height:400px;background:linear-gradient(135deg,var(--accent),var(--accent2));top:-200px;right:-200px}
+        .s2{width:350px;height:350px;background:linear-gradient(135deg,var(--gold),var(--accent));bottom:-180px;left:-180px;animation-delay:-20s}
         @keyframes float3D{
             0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
-            25%{transform:translate3d(100px,-120px,120px) rotate(90deg) scale(1.15)}
-            50%{transform:translate3d(-80px,100px,60px) rotate(180deg) scale(0.85)}
-            75%{transform:translate3d(60px,80px,90px) rotate(270deg) scale(1.1)}
+            33%{transform:translate3d(80px,-100px,100px) rotate(120deg) scale(1.1)}
+            66%{transform:translate3d(-60px,80px,60px) rotate(240deg) scale(0.9)}
         }
         
-        .container{
+        .app-container{
             position:relative;z-index:1;
-            max-width:1400px;margin:0 auto;padding:0 24px;
-            width:100%;
+            width:100%;max-width:100vw;
+            padding-bottom:80px;
         }
         
-        /* Glass Header 3D */
-        header{
+        /* Top Header Glass */
+        .app-header{
             position:sticky;top:0;z-index:1000;
-            background:rgba(255,255,255,0.92);
-            backdrop-filter:blur(30px) saturate(250%);
+            background:rgba(255,255,255,0.95);
+            backdrop-filter:blur(30px) saturate(200%);
             border-bottom:1px solid rgba(0,0,0,0.06);
-            box-shadow:0 8px 32px rgba(0,0,0,0.08);
-            animation:slideDown 0.7s cubic-bezier(0.4,0,0.2,1);
+            box-shadow:0 4px 24px rgba(0,0,0,0.06);
+            animation:slideDown 0.6s cubic-bezier(0.4,0,0.2,1);
         }
-        @keyframes slideDown{from{transform:translateY(-120px);opacity:0}to{transform:translateY(0);opacity:1}}
+        @keyframes slideDown{from{transform:translateY(-100px);opacity:0}to{transform:translateY(0);opacity:1}}
         
-        .header-wrap{
-            display:flex;justify-content:space-between;align-items:center;
-            padding:22px 0;max-width:1400px;margin:0 auto;
+        .header-content{
+            display:flex;align-items:center;justify-content:space-between;
+            padding:16px 20px;max-width:100%;
         }
         
-        .logo{
-            display:flex;align-items:center;gap:16px;cursor:pointer;
-            transition:0.5s cubic-bezier(0.4,0,0.2,1);
-            transform-style:preserve-3d;
+        .logo-mini{
+            display:flex;align-items:center;gap:12px;
         }
-        .logo:hover{transform:scale(1.08) translateZ(20px)}
         
         .logo-icon{
-            width:56px;height:56px;
+            width:44px;height:44px;
             background:linear-gradient(135deg,var(--p1),var(--p2));
-            border-radius:16px;display:flex;align-items:center;justify-content:center;
-            color:var(--white);font-weight:800;font-size:24px;
-            box-shadow:0 15px 45px rgba(15,23,42,0.4);
-            transform:rotateX(15deg) rotateY(-15deg);
-            transition:0.6s cubic-bezier(0.4,0,0.2,1);
-        }
-        .logo:hover .logo-icon{
-            transform:rotateX(0) rotateY(0) scale(1.2);
-            box-shadow:0 20px 60px rgba(15,23,42,0.5);
+            border-radius:12px;display:flex;align-items:center;justify-content:center;
+            color:#fff;font-weight:800;font-size:20px;
+            box-shadow:0 10px 30px rgba(15,23,42,0.35);
+            transform:rotateX(12deg) rotateY(-12deg);
         }
         
-        .logo-text h1{font-size:26px;font-weight:800;color:var(--p1);letter-spacing:-0.8px}
-        .logo-text p{font-size:10px;color:var(--text2);font-weight:700;letter-spacing:2px;margin-top:2px}
+        .logo-text h1{font-size:20px;font-weight:800;color:var(--p1);letter-spacing:-0.5px}
+        .logo-text p{font-size:9px;color:var(--tg-theme-hint-color,#64748b);font-weight:700;letter-spacing:1.5px}
         
-        nav ul{display:flex;gap:8px;list-style:none}
-        nav a{
-            color:var(--text);text-decoration:none;font-weight:700;font-size:15px;
-            padding:14px 28px;border-radius:14px;transition:0.4s cubic-bezier(0.4,0,0.2,1);
-            display:block;position:relative;overflow:hidden;
+        .user-info{
+            display:flex;align-items:center;gap:10px;
+            padding:8px 16px;background:var(--glass);backdrop-filter:blur(10px);
+            border-radius:12px;border:1px solid var(--glass-b);
         }
-        nav a::before{
-            content:'';position:absolute;inset:0;
+        .user-avatar{
+            width:36px;height:36px;border-radius:50%;
             background:linear-gradient(135deg,var(--accent),var(--accent2));
-            opacity:0;transition:0.4s;z-index:-1;
+            display:flex;align-items:center;justify-content:center;
+            color:#fff;font-weight:700;font-size:14px;
         }
-        nav a:hover::before,nav a.active::before{opacity:1}
-        nav a:hover,nav a.active{
-            color:var(--white);transform:translateY(-3px) scale(1.05);
-            box-shadow:0 12px 35px rgba(59,130,246,0.45);
-        }
-        
-        /* Mobile Menu */
-        .menu-toggle{
-            display:none;width:50px;height:50px;
-            background:var(--p1);border:none;border-radius:12px;
-            cursor:pointer;flex-direction:column;gap:6px;
-            align-items:center;justify-content:center;
-        }
-        .menu-toggle span{
-            width:26px;height:3px;background:var(--white);
-            border-radius:3px;transition:0.3s;
-        }
+        .user-name{font-size:14px;font-weight:600;color:var(--p1)}
         
         /* Page System */
         .page{
-            display:none;animation:pageEnter 0.8s cubic-bezier(0.4,0,0.2,1);
-            width:100%;min-height:100vh;
+            display:none;animation:pageEnter 0.6s cubic-bezier(0.4,0,0.2,1);
+            width:100%;min-height:calc(100vh - 140px);padding:24px 20px;
         }
         .page.active{display:block}
         @keyframes pageEnter{
-            from{opacity:0;transform:translateY(60px) rotateX(-20deg) scale(0.94)}
-            to{opacity:1;transform:translateY(0) rotateX(0) scale(1)}
+            from{opacity:0;transform:translateY(40px) scale(0.96)}
+            to{opacity:1;transform:translateY(0) scale(1)}
         }
         
-        /* Hero 3D */
-        .hero{
+        /* Hero Mini */
+        .hero-mini{
             background:linear-gradient(135deg,var(--p1) 0%,var(--p2) 100%);
-            color:var(--white);padding:130px 0 110px 0;
-            position:relative;overflow:hidden;width:100%;
+            border-radius:28px;padding:40px 28px;margin-bottom:24px;
+            color:#fff;position:relative;overflow:hidden;
+            box-shadow:0 20px 60px rgba(15,23,42,0.3);
         }
-        .hero::before{
-            content:'';position:absolute;top:0;right:0;width:65%;height:100%;
+        .hero-mini::before{
+            content:'';position:absolute;top:0;right:0;width:70%;height:100%;
             background:rgba(255,255,255,0.05);
-            clip-path:polygon(35% 0,100% 0,100% 100%,0 100%);
-            animation:slideRight 25s ease-in-out infinite;
-        }
-        @keyframes slideRight{0%,100%{transform:translateX(0)}50%{transform:translateX(60px)}}
-        
-        .hero-grid{
-            position:relative;z-index:1;
-            display:grid;grid-template-columns:1.3fr 1fr;gap:100px;align-items:center;
-            width:100%;
+            clip-path:polygon(40% 0,100% 0,100% 100%,0 100%);
         }
         
-        .hero-text h2{
-            font-size:64px;font-weight:800;margin-bottom:28px;line-height:1.2;
-            animation:fadeInScale 1s ease;
+        .hero-content{position:relative;z-index:1}
+        .hero-mini h2{
+            font-size:32px;font-weight:800;margin-bottom:16px;line-height:1.3;
         }
-        @keyframes fadeInScale{
-            from{opacity:0;transform:scale(0.7) translateY(50px)}
-            to{opacity:1;transform:scale(1) translateY(0)}
-        }
-        
-        .hero-text p{
-            font-size:20px;opacity:0.95;margin-bottom:48px;line-height:2;
-            animation:fadeInScale 1s ease 0.2s backwards;
+        .hero-mini p{
+            font-size:15px;opacity:0.92;margin-bottom:28px;line-height:1.8;
         }
         
-        .btn-group{display:flex;gap:24px;flex-wrap:wrap;animation:fadeInScale 1s ease 0.4s backwards}
+        .stats-mini{
+            display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;
+        }
+        .stat-mini{
+            background:rgba(255,255,255,0.15);backdrop-filter:blur(20px);
+            border:1px solid rgba(255,255,255,0.2);
+            padding:20px;border-radius:16px;text-align:center;
+        }
+        .stat-num{font-size:28px;font-weight:800;margin-bottom:6px}
+        .stat-label{font-size:12px;opacity:0.9}
         
+        /* Section */
+        .section{margin-bottom:32px}
+        
+        .sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+        .sec-title{font-size:22px;font-weight:800;color:var(--p1)}
+        .sec-link{
+            font-size:14px;font-weight:700;color:var(--accent);
+            text-decoration:none;display:flex;align-items:center;gap:6px;
+        }
+        
+        /* Cards Grid */
+        .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+        
+        .card-3d{
+            background:var(--glass);backdrop-filter:blur(25px) saturate(200%);
+            border:1px solid var(--glass-b);padding:28px 24px;border-radius:20px;
+            box-shadow:0 15px 45px rgba(0,0,0,0.08);
+            transition:0.5s cubic-bezier(0.4,0,0.2,1);
+            transform-style:preserve-3d;
+        }
+        .card-3d:active{transform:scale(0.96)}
+        
+        .card-icon{
+            width:56px;height:56px;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            border-radius:16px;display:flex;align-items:center;justify-content:center;
+            font-size:28px;margin-bottom:18px;
+            box-shadow:0 12px 35px rgba(59,130,246,0.35);
+        }
+        
+        .card-3d h3{font-size:18px;font-weight:800;color:var(--p1);margin-bottom:10px}
+        .card-3d p{font-size:14px;color:var(--tg-theme-hint-color,#64748b);line-height:1.7}
+        
+        /* Services */
+        .services-list{display:flex;flex-direction:column;gap:14px}
+        
+        .service-item{
+            background:#fff;padding:24px;border-radius:18px;
+            border:2px solid #f1f5f9;
+            display:flex;align-items:center;gap:18px;
+            transition:0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .service-item:active{transform:scale(0.98);border-color:var(--accent)}
+        
+        .service-icon-mini{
+            width:54px;height:54px;flex-shrink:0;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            border-radius:14px;display:flex;align-items:center;justify-content:center;
+            font-size:24px;color:#fff;
+        }
+        
+        .service-info{flex:1}
+        .service-info h4{font-size:16px;font-weight:800;color:var(--p1);margin-bottom:4px}
+        .service-info p{font-size:13px;color:var(--tg-theme-hint-color,#64748b)}
+        
+        .service-price{
+            font-size:24px;font-weight:800;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        }
+        
+        /* Buttons */
         .btn{
-            padding:20px 52px;border:none;border-radius:16px;
-            font-size:17px;font-weight:700;font-family:'Noto Sans Arabic',sans-serif;
-            cursor:pointer;transition:0.5s cubic-bezier(0.4,0,0.2,1);
-            display:inline-flex;align-items:center;gap:12px;
-            position:relative;overflow:hidden;white-space:nowrap;
+            width:100%;padding:18px;border:none;border-radius:16px;
+            font-size:16px;font-weight:700;font-family:'Noto Sans Arabic',sans-serif;
+            cursor:pointer;transition:0.4s cubic-bezier(0.4,0,0.2,1);
+            display:flex;align-items:center;justify-content:center;gap:10px;
+            position:relative;overflow:hidden;
         }
-        .btn::after{
-            content:'';position:absolute;top:50%;left:50%;width:0;height:0;
-            border-radius:50%;background:rgba(255,255,255,0.5);
-            transform:translate(-50%,-50%);transition:0.7s;
-        }
-        .btn:hover::after{width:500px;height:500px}
+        .btn:active{transform:scale(0.96)}
         
         .btn-primary{
-            background:var(--white);color:var(--p1);
-            box-shadow:0 22px 55px rgba(0,0,0,0.3);
-        }
-        .btn-primary:hover{
-            transform:translateY(-6px) scale(1.06);
-            box-shadow:0 32px 75px rgba(0,0,0,0.4);
+            background:var(--tg-theme-button-color,#3b82f6);
+            color:var(--tg-theme-button-text-color,#fff);
+            box-shadow:0 12px 35px rgba(59,130,246,0.35);
         }
         
         .btn-glass{
-            background:rgba(255,255,255,0.18);backdrop-filter:blur(20px);
-            color:var(--white);border:2px solid rgba(255,255,255,0.35);
-        }
-        .btn-glass:hover{
-            background:rgba(255,255,255,0.28);transform:translateY(-6px);
+            background:var(--glass);backdrop-filter:blur(20px);
+            border:2px solid var(--glass-b);color:var(--p1);
         }
         
-        .hero-cards{
-            display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
-            animation:fadeInScale 1s ease 0.6s backwards;
+        /* Bottom Nav */
+        .bottom-nav{
+            position:fixed;bottom:0;left:0;right:0;z-index:1000;
+            background:rgba(255,255,255,0.98);
+            backdrop-filter:blur(30px) saturate(200%);
+            border-top:1px solid rgba(0,0,0,0.06);
+            padding:12px 0 calc(12px + env(safe-area-inset-bottom));
+            box-shadow:0 -8px 32px rgba(0,0,0,0.08);
         }
         
-        .card-3d{
-            background:var(--glass);backdrop-filter:blur(30px) saturate(250%);
-            border:1px solid var(--glass-b);padding:42px 36px;border-radius:26px;
-            box-shadow:0 28px 80px rgba(0,0,0,0.4);
-            transition:0.7s cubic-bezier(0.4,0,0.2,1);
-            transform-style:preserve-3d;
-        }
-        .card-3d:hover{
-            transform:translateY(-18px) rotateX(10deg) rotateY(-10deg) translateZ(50px);
-            box-shadow:0 45px 110px rgba(0,0,0,0.55);
+        .nav-items{
+            display:flex;justify-content:space-around;align-items:center;
+            max-width:500px;margin:0 auto;
         }
         
-        .card-num{font-size:56px;font-weight:800;margin-bottom:12px}
-        .card-label{font-size:16px;opacity:0.95;font-weight:500}
-        
-        /* Section */
-        section{padding:130px 0;width:100%}
-        
-        .sec-head{text-align:center;margin-bottom:85px;padding:0 24px}
-        
-        .badge-3d{
-            display:inline-block;padding:12px 32px;
-            background:linear-gradient(135deg,var(--accent),var(--accent2));
-            color:var(--white);border-radius:50px;font-size:14px;font-weight:800;
-            margin-bottom:25px;box-shadow:0 15px 40px rgba(59,130,246,0.4);
-            animation:pulse3D 3.5s ease-in-out infinite;
+        .nav-item{
+            display:flex;flex-direction:column;align-items:center;gap:6px;
+            padding:8px 16px;border-radius:12px;cursor:pointer;
+            transition:0.3s;min-width:70px;
         }
-        @keyframes pulse3D{0%,100%{transform:scale(1) translateZ(0)}50%{transform:scale(1.08) translateZ(25px)}}
+        .nav-item.active{background:rgba(59,130,246,0.12)}
         
-        .sec-title{font-size:50px;font-weight:800;color:var(--p1);margin-bottom:22px}
-        .sec-desc{font-size:19px;color:var(--text2);max-width:750px;margin:0 auto;line-height:2}
-        
-        /* Features */
-        .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:42px;width:100%}
-        
-        .feat-card{
-            background:var(--white);padding:52px 42px;border-radius:28px;
-            border:2px solid #e2e8f0;transition:0.7s cubic-bezier(0.4,0,0.2,1);
-            transform-style:preserve-3d;position:relative;overflow:hidden;
+        .nav-icon{
+            width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+            font-size:22px;transition:0.3s;
         }
-        .feat-card::before{
-            content:'';position:absolute;top:0;left:0;width:100%;height:7px;
-            background:linear-gradient(90deg,var(--accent),var(--accent2));
-            transform:scaleX(0);transition:0.7s;
+        .nav-item.active .nav-icon{transform:scale(1.15)}
+        
+        .nav-label{
+            font-size:11px;font-weight:700;color:var(--tg-theme-hint-color,#64748b);
+            transition:0.3s;
         }
-        .feat-card:hover::before{transform:scaleX(1)}
-        .feat-card:hover{
-            transform:translateY(-18px) rotateX(10deg) translateZ(35px);
-            box-shadow:0 40px 85px rgba(0,0,0,0.16);border-color:var(--accent);
+        .nav-item.active .nav-label{color:var(--accent)}
+        
+        /* Loading */
+        .loading{
+            position:fixed;inset:0;z-index:9999;
+            background:var(--bg);display:flex;align-items:center;justify-content:center;
+            flex-direction:column;gap:20px;
         }
-        
-        .feat-icon{
-            width:85px;height:85px;
-            background:linear-gradient(135deg,var(--accent),var(--accent2));
-            border-radius:22px;display:flex;align-items:center;justify-content:center;
-            font-size:40px;margin-bottom:32px;
-            box-shadow:0 20px 50px rgba(59,130,246,0.4);
-            transform:rotateX(18deg) rotateY(-18deg);
-            transition:0.7s cubic-bezier(0.4,0,0.2,1);
+        .loading-spinner{
+            width:50px;height:50px;border:4px solid #e2e8f0;
+            border-top-color:var(--accent);border-radius:50%;
+            animation:spin 0.8s linear infinite;
         }
-        .feat-card:hover .feat-icon{transform:rotateX(0) rotateY(0) scale(1.18) translateZ(30px)}
+        @keyframes spin{to{transform:rotate(360deg)}}
         
-        .feat-card h3{font-size:25px;font-weight:800;color:var(--p1);margin-bottom:18px}
-        .feat-card p{font-size:16px;color:var(--text2);line-height:2.1}
-        
-        /* Services */
-        .services-wrap{background:var(--white);width:100%}
-        
-        .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;width:100%}
-        
-        .service-3d{
-            background:var(--bg);padding:48px 38px;border-radius:26px;
-            border:3px solid transparent;text-align:center;transition:0.7s cubic-bezier(0.4,0,0.2,1);
-            transform-style:preserve-3d;
-        }
-        .service-3d:hover{
-            background:var(--white);border-color:var(--accent);
-            transform:translateY(-15px) rotateY(10deg) translateZ(40px);
-            box-shadow:0 35px 75px rgba(0,0,0,0.14);
-        }
-        
-        .service-tag{
-            display:inline-block;padding:9px 22px;
-            background:var(--accent);color:var(--white);border-radius:10px;
-            font-size:12px;font-weight:800;margin-bottom:24px;
-        }
-        
-        .service-3d h4{font-size:23px;font-weight:800;color:var(--p1);margin-bottom:20px}
-        
-        .service-price{
-            font-size:46px;font-weight:800;
-            background:linear-gradient(135deg,var(--accent),var(--accent2));
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-            margin:28px 0;
-        }
-        
-        .service-list{list-style:none;margin:32px 0;text-align:right}
-        .service-list li{padding:13px 0;font-size:15px;color:var(--text2);border-bottom:1px solid #e2e8f0}
-        .service-list li:last-child{border-bottom:none}
-        
-        .btn-service{
-            width:100%;padding:17px;background:var(--p1);color:var(--white);
-            border:none;border-radius:14px;font-size:16px;font-weight:700;
-            font-family:'Noto Sans Arabic',sans-serif;cursor:pointer;transition:0.4s;
-        }
-        .btn-service:hover{background:var(--p2);transform:scale(1.08)}
-        
-        /* Stats */
-        .stats-banner{
-            background:linear-gradient(135deg,var(--p1),var(--p2));
-            color:var(--white);padding:95px 0;position:relative;overflow:hidden;width:100%;
-        }
-        
-        .stats-row{
-            display:grid;grid-template-columns:repeat(4,1fr);gap:65px;
-            text-align:center;position:relative;width:100%;
-        }
-        
-        .stat-item h3{font-size:68px;font-weight:800;margin-bottom:16px}
-        .stat-item p{font-size:19px;opacity:0.95;font-weight:500}
-        
-        /* Contact */
-        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:65px;width:100%}
-        
-        .contact-info{
-            background:var(--white);padding:65px;border-radius:30px;
-            box-shadow:0 30px 90px rgba(0,0,0,0.12);
-        }
-        
-        .contact-item{
-            display:flex;align-items:start;gap:26px;
-            margin-bottom:38px;padding-bottom:38px;border-bottom:2px solid #f1f5f9;
-        }
-        .contact-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-        
-        .contact-icon{
-            width:70px;height:70px;
-            background:linear-gradient(135deg,var(--accent),var(--accent2));
-            border-radius:20px;display:flex;align-items:center;justify-content:center;
-            font-size:30px;flex-shrink:0;
-            box-shadow:0 18px 45px rgba(59,130,246,0.4);
-        }
-        
-        .contact-details h4{font-size:21px;font-weight:800;color:var(--p1);margin-bottom:11px}
-        .contact-details p{font-size:16px;color:var(--text2);line-height:1.8}
-        
-        /* Footer */
-        footer{
-            background:var(--p1);color:var(--white);
-            padding:85px 0 38px 0;margin-top:130px;width:100%;
-        }
-        
-        .footer-grid{
-            display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:75px;margin-bottom:65px;
-        }
-        
-        .footer-col h4{font-size:21px;font-weight:800;margin-bottom:30px}
-        .footer-col p{font-size:15px;opacity:0.88;line-height:2.1}
-        .footer-col ul{list-style:none}
-        .footer-col ul li{margin-bottom:17px}
-        .footer-col ul li a{
-            color:rgba(255,255,255,0.88);text-decoration:none;font-size:15px;transition:0.3s;
-        }
-        .footer-col ul li a:hover{color:var(--white);padding-right:10px}
-        
-        .footer-bottom{
-            border-top:1px solid rgba(255,255,255,0.18);
-            padding-top:38px;text-align:center;font-size:15px;opacity:0.8;
-        }
-        
-        /* Responsive - FIXED 100% */
-        @media(max-width:1200px){
-            .hero-grid{grid-template-columns:1fr;gap:60px}
-            .feat-grid{grid-template-columns:repeat(2,1fr);gap:32px}
-            .services-grid{grid-template-columns:repeat(2,1fr);gap:30px}
-            .contact-grid{grid-template-columns:1fr;gap:45px}
-        }
-        
-        @media(max-width:768px){
-            .container{padding:0 18px}
-            .header-wrap{padding:18px 18px}
-            .logo-icon{width:48px;height:48px;font-size:21px}
-            .logo-text h1{font-size:23px}
-            .hero{padding:90px 0 80px 0}
-            .hero-text h2{font-size:42px;line-height:1.3}
-            .hero-text p{font-size:18px}
-            .feat-grid{grid-template-columns:1fr;gap:28px}
-            .services-grid{grid-template-columns:1fr;gap:28px}
-            .stats-row{grid-template-columns:repeat(2,1fr);gap:40px}
-            .footer-grid{grid-template-columns:1fr;gap:45px}
-            nav ul{display:none}
-            .menu-toggle{display:flex}
-            .btn-group{flex-direction:column;width:100%}
-            .btn{width:100%;justify-content:center}
-            .hero-cards{grid-template-columns:1fr;gap:18px}
-            .sec-title{font-size:38px}
-            section{padding:90px 0}
-        }
-        
-        @media(max-width:480px){
-            .hero-text h2{font-size:34px}
-            .sec-title{font-size:32px}
-            .card-num{font-size:46px}
-            .stat-item h3{font-size:52px}
-            .feat-card{padding:38px 28px}
-            .service-3d{padding:38px 28px}
+        /* Responsive */
+        @media(max-width:380px){
+            .hero-mini h2{font-size:28px}
+            .cards-grid{grid-template-columns:1fr}
+            .stats-mini{grid-template-columns:1fr}
         }
     </style>
 </head>
@@ -432,224 +302,390 @@
     <div class="bg-3d"></div>
     <div class="shape s1"></div>
     <div class="shape s2"></div>
-    <div class="shape s3"></div>
     
-    <header>
-        <div class="container">
-            <div class="header-wrap">
-                <div class="logo" onclick="showPage('home')">
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p style="color:var(--tg-theme-hint-color);font-weight:600">جاری بارکردن...</p>
+    </div>
+    
+    <div class="app-container" id="app" style="display:none">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-mini" onclick="showPage('home')">
                     <div class="logo-icon">KP</div>
                     <div class="logo-text">
                         <h1>Karo Plus</h1>
-                        <p>BUSINESS SOLUTIONS</p>
+                        <p>MINI APP</p>
                     </div>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" onclick="showPage('home');return false;" class="nav-link active">سەرەتا</a></li>
-                        <li><a href="#" onclick="showPage('services');return false;" class="nav-link">خزمەتگوزاری</a></li>
-                        <li><a href="#" onclick="showPage('features');return false;" class="nav-link">تایبەتمەندی</a></li>
-                        <li><a href="#" onclick="showPage('about');return false;" class="nav-link">دەربارە</a></li>
-                        <li><a href="#" onclick="showPage('contact');return false;" class="nav-link">پەیوەندی</a></li>
-                    </ul>
-                </nav>
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <span></span><span></span><span></span>
-                </button>
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-name" id="userName">User</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page: Home -->
+        <div id="home" class="page active">
+            <div class="hero-mini">
+                <div class="hero-content">
+                    <h2>بەخێربێیت بۆ Karo Plus</h2>
+                    <p>باشترین خزمەتگوزاری دیجیتاڵی لە عێراق. خێرا، متمانە، کوالێتی.</p>
+                    <button class="btn btn-primary" onclick="showPage('services')">
+                        دەستپێبکە ئێستا
+                    </button>
+                </div>
+                <div class="stats-mini">
+                    <div class="stat-mini">
+                        <div class="stat-num">50K+</div>
+                        <div class="stat-label">کڕیار</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="stat-num">99%</div>
+                        <div class="stat-label">ڕازیبوون</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="stat-num">24/7</div>
+                        <div class="stat-label">پشتیوانی</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="stat-num">5+</div>
+                        <div class="stat-label">ساڵ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="sec-header">
+                    <h3 class="sec-title">خزمەتگوزاری خێرا</h3>
+                    <a href="#" class="sec-link" onclick="showPage('services');return false;">هەمووی →</a>
+                </div>
+                <div class="cards-grid">
+                    <div class="card-3d" onclick="showService('social')">
+                        <div class="card-icon">📱</div>
+                        <h3>سۆشیال میدیا</h3>
+                        <p>فۆڵۆوەر، لایک، بینین</p>
+                    </div>
+                    <div class="card-3d" onclick="showService('gaming')">
+                        <div class="card-icon">🎮</div>
+                        <h3>یاریەکان</h3>
+                        <p>شدات، ئەکاونت، ئایتم</p>
+                    </div>
+                    <div class="card-3d" onclick="showService('cards')">
+                        <div class="card-icon">💳</div>
+                        <h3>کارتی پارەدان</h3>
+                        <p>Google, Apple, Steam</p>
+                    </div>
+                    <div class="card-3d" onclick="showService('subs')">
+                        <div class="card-icon">🎬</div>
+                        <h3>سەبسکرایبشن</h3>
+                        <p>Netflix, Spotify</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="sec-header">
+                    <h3 class="sec-title">بۆچی ئێمە؟</h3>
+                </div>
+                <div class="cards-grid">
+                    <div class="card-3d">
+                        <div class="card-icon">⚡</div>
+                        <h3>خێرا</h3>
+                        <p>لە 24 کاتژمێردا</p>
+                    </div>
+                    <div class="card-3d">
+                        <div class="card-icon">🛡️</div>
+                        <h3>گرەنتی</h3>
+                        <p>100% پارێزراو</p>
+                    </div>
+                    <div class="card-3d">
+                        <div class="card-icon">💰</div>
+                        <h3>گونجاو</h3>
+                        <p>باشترین نرخ</p>
+                    </div>
+                    <div class="card-3d">
+                        <div class="card-icon">💬</div>
+                        <h3>پشتیوانی</h3>
+                        <p>24/7 ئامادە</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page: Services -->
+        <div id="services" class="page">
+            <div style="padding:24px 20px">
+                <div class="sec-header">
+                    <h2 class="sec-title">هەموو خزمەتگوزاریەکان</h2>
+                    <p style="color:var(--tg-theme-hint-color);font-size:15px;margin-top:10px">هەڵبژێرە و داوا بکە</p>
+                </div>
+                
+                <div class="services-list">
+                    <div class="service-item" onclick="orderService('Social Media','Instagram Followers','$5')">
+                        <div class="service-icon-mini">📱</div>
+                        <div class="service-info">
+                            <h4>Instagram Followers</h4>
+                            <p>فۆڵۆوەری ڕاستەقینە - 1000 دانە</p>
+                        </div>
+                        <div class="service-price">$5</div>
+                    </div>
+                    
+                    <div class="service-item" onclick="orderService('Social Media','TikTok Views','$3')">
+                        <div class="service-icon-mini">🎵</div>
+                        <div class="service-info">
+                            <h4>TikTok Views</h4>
+                            <p>بینینی ڤیدیۆ - 10K دانە</p>
+                        </div>
+                        <div class="service-price">$3</div>
+                    </div>
+                    
+                    <div class="service-item" onclick="orderService('Gaming','PUBG UC','$10')">
+                        <div class="service-icon-mini">🎮</div>
+                        <div class="service-info">
+                            <h4>PUBG Mobile UC</h4>
+                            <p>660 UC - خێرا</p>
+                        </div>
+                        <div class="service-price">$10</div>
+                    </div>
+                    
+                    <div class="service-item" onclick="orderService('Gift Cards','Google Play','$15')">
+                        <div class="service-icon-mini">🎁</div>
+                        <div class="service-info">
+                            <h4>Google Play Card</h4>
+                            <p>$15 USD - کۆدی خێرا</p>
+                        </div>
+                        <div class="service-price">$15</div>
+                    </div>
+                    
+                    <div class="service-item" onclick="orderService('Gift Cards','Apple Gift Card','$15')">
+                        <div class="service-icon-mini">🍎</div>
+                        <div class="service-info">
+                            <h4>Apple Gift Card</h4>
+                            <p>$15 USD - هەموو وڵاتان</p>
+                        </div>
+                        <div class="service-price">$15</div>
+                    </div>
+                    
+                    <div class="service-item" onclick="orderService('Subscription','Netflix','$8')">
+                        <div class="service-icon-mini">🎬</div>
+                        <div class="service-info">
+                            <h4>Netflix Premium</h4>
+                            <p>1 مانگ - 4K UHD</p>
+                        </div>
+                        <div class="service-price">$8</div>
+                    </div>
+                    
+                    <div class="service-item" onclick="orderService('Subscription','Spotify','$5')">
+                        <div class="service-icon-mini">🎵</div>
+                        <div class="service-info">
+                            <h4>Spotify Premium</h4>
+                            <p>1 مانگ - بێ ڕیکلام</p>
+                        </div>
+                        <div class="service-price">$5</div>
+                    </div>
+                    
+                    <div class="service-item" onclick="orderService('Gaming','Free Fire Diamonds','$12')">
+                        <div class="service-icon-mini">💎</div>
+                        <div class="service-info">
+                            <h4>Free Fire Diamonds</h4>
+                            <p>1080 Diamonds</p>
+                        </div>
+                        <div class="service-price">$12</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
 
-    <div id="home" class="page active">
-        <section class="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-text">
-                        <h2>چارەسەری دیجیتاڵی پرۆفیشناڵ بۆ بازرگانی مۆدێرن</h2>
-                        <p>پێشکەشکردنی باشترین خزمەتگوزاری بە ستانداردی جیهانی لە عێراق. متمانە، کوالێتی، خێرایی.</p>
-                        <div class="btn-group">
-                            <button class="btn btn-primary" onclick="showPage('services')">
-                                دەستپێبکە ئێستا
-                            </button>
-                            <button class="btn btn-glass" onclick="showPage('contact')">
-                                پەیوەندی بە ئێمە
-                            </button>
-                        </div>
-                    </div>
-                    <div class="hero-cards">
-                        <div class="card-3d">
-                            <div class="card-num">50K+</div>
-                            <div class="card-label">کڕیاری چالاک</div>
-                        </div>
-                        <div class="card-3d">
-                            <div class="card-num">99.2%</div>
-                            <div class="card-label">ڕێژەی سەرکەوتن</div>
-                        </div>
-                        <div class="card-3d">
-                            <div class="card-num">24/7</div>
-                            <div class="card-label">پشتیوانی</div>
-                        </div>
-                        <div class="card-3d">
-                            <div class="card-num">5+</div>
-                            <div class="card-label">ساڵ ئەزموون</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="features">
-            <div class="container">
-                <div class="sec-head">
-                    <div class="badge-3d">تایبەتمەندیەکانمان</div>
-                    <h2 class="sec-title">بۆچی Karo Plus هەڵبژێریت؟</h2>
-                    <p class="sec-desc">پێشکەشکردنی خزمەتگوزاری پرۆفیشناڵ بە ستانداردی جیهانی</p>
+        <!-- Page: Features -->
+        <div id="features" class="page">
+            <div style="padding:24px 20px">
+                <div class="sec-header">
+                    <h2 class="sec-title">تایبەتمەندیەکانمان</h2>
+                    <p style="color:var(--tg-theme-hint-color);font-size:15px;margin-top:10px">بۆچی Karo Plus هەڵبژێریت</p>
                 </div>
                 
-                <div class="feat-grid">
-                    <div class="feat-card">
-                        <div class="feat-icon">⚡</div>
-                        <h3>خێرایی لە جێبەجێکردن</h3>
-                        <p>هەموو داواکاریەکان لە ماوەی 24 کاتژمێردا تەواو دەکرێن بە کوالێتی بەرز و وردەکاری تەواو</p>
+                <div class="cards-grid">
+                    <div class="card-3d">
+                        <div class="card-icon">⚡</div>
+                        <h3>خێرایی</h3>
+                        <p>هەموو داواکاریەکان لە 24 کاتژمێردا تەواو دەکرێن</p>
                     </div>
-                    <div class="feat-card">
-                        <div class="feat-icon">🛡️</div>
-                        <h3>گرەنتی کوالێتی</h3>
-                        <p>گرەنتی 100% لەسەر هەموو خزمەتگوزاریەکانمان لەگەڵ گەڕاندنەوەی پارە</p>
+                    <div class="card-3d">
+                        <div class="card-icon">🛡️</div>
+                        <h3>گرەنتی</h3>
+                        <p>100% گرەنتی کوالێتی و گەڕاندنەوەی پارە</p>
                     </div>
-                    <div class="feat-card">
-                        <div class="feat-icon">💬</div>
-                        <h3>پشتیوانی 24/7</h3>
-                        <p>تیمی پشتیوانی پرۆفیشناڵ بەردەوام ئامادەیە بۆ وەڵامدانەوەی پرسیارەکانتان</p>
+                    <div class="card-3d">
+                        <div class="card-icon">💬</div>
+                        <h3>پشتیوانی</h3>
+                        <p>تیمی پشتیوانی 24/7 ئامادەیە</p>
                     </div>
-                    <div class="feat-card">
-                        <div class="feat-icon">💰</div>
-                        <h3>نرخی کێبڕکێکار</h3>
-                        <p>باشترین نرخ لە بازاڕ لەگەڵ داشکاندنی تایبەت بۆ کڕیاری بەردەوام</p>
+                    <div class="card-3d">
+                        <div class="card-icon">💰</div>
+                        <h3>نرخی گونجاو</h3>
+                        <p>باشترین نرخ لە بازاڕ</p>
                     </div>
-                    <div class="feat-card">
-                        <div class="feat-icon">🔒</div>
-                        <h3>ئاسایشی تەواو</h3>
-                        <p>پارەدانی ئارام و پارێزراو لەگەڵ پاراستنی زانیاری کەسی بە تەواوی</p>
+                    <div class="card-3d">
+                        <div class="card-icon">🔒</div>
+                        <h3>ئاسایش</h3>
+                        <p>پارەدانی پارێزراو و نهێنی</p>
                     </div>
-                    <div class="feat-card">
-                        <div class="feat-icon">📊</div>
-                        <h3>متمانەی سەلمێنراو</h3>
-                        <p>5+ ساڵ ئەزموون لەگەڵ زیاتر لە 50,000 کڕیاری ڕازی لە سەرانسەری عێراق</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-banner">
-            <div class="container">
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <h3>50,000+</h3>
-                        <p>کڕیاری ڕازی</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>150,000+</h3>
-                        <p>داواکاری تەواوکراو</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>99.2%</h3>
-                        <p>ڕێژەی سەرکەوتن</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>4.9/5</h3>
-                        <p>هەڵسەنگاندن</p>
+                    <div class="card-3d">
+                        <div class="card-icon">📊</div>
+                        <h3>متمانە</h3>
+                        <p>5+ ساڵ ئەزموون، 50K+ کڕیار</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
 
-    <div id="services" class="page">
-        <section class="services-wrap">
-            <div class="container">
-                <div class="sec-head">
-                    <div class="badge-3d">خزمەتگوزاریەکان</div>
-                    <h2 class="sec-title">چارەسەری تەواو بۆ پێداویستیەکانت</h2>
-                    <p class="sec-desc">هەموو ئەو خزمەتگوزاریانەی پێویستتە لە یەک شوێن</p>
+        <!-- Page: About -->
+        <div id="about" class="page">
+            <div style="padding:24px 20px">
+                <div class="sec-header">
+                    <h2 class="sec-title">دەربارەی Karo Plus</h2>
                 </div>
                 
-                <div class="services-grid">
-                    <div class="service-3d">
-                        <div class="service-tag">بەناوبانگ</div>
-                        <h4>سۆشیال میدیا</h4>
-                        <div class="service-price">$5</div>
-                        <ul class="service-list">
-                            <li>فۆڵۆوەری ڕاستەقینە</li>
-                            <li>لایک و کۆمێنت</li>
-                            <li>بینینی ڤیدیۆ</li>
-                            <li>گەشەکردنی خێرا</li>
-                        </ul>
-                        <button class="btn-service" onclick="orderNow('Social Media','$5')">داوا بکە ئێستا</button>
-                    </div>
-                    
-                    <div class="service-3d">
-                        <div class="service-tag">نوێ</div>
-                        <h4>یاریە ئەلیکترۆنیەکان</h4>
-                        <div class="service-price">$10</div>
-                        <ul class="service-list">
-                            <li>شداتی یاری</li>
-                            <li>ئەکاونتی پریمیوم</li>
-                            <li>ئایتم و سکین</li>
-                            <li>بەرزکردنەوەی ئاست</li>
-                        </ul>
-                        <button class="btn-service" onclick="orderNow('Gaming','$10')">داوا بکە ئێستا</button>
-                    </div>
-                    
-                    <div class="service-3d">
-                        <div class="service-tag">زۆر داواکراو</div>
-                        <h4>کارتی پارەدان</h4>
-                        <div class="service-price">$15</div>
-                        <ul class="service-list">
-                            <li>Google Play</li>
-                            <li>Apple Gift Card</li>
-                            <li>Steam Wallet</li>
-                            <li>PlayStation Store</li>
-                        </ul>
-                        <button class="btn-service" onclick="orderNow('Gift Cards','$15')">داوا بکە ئێستا</button>
-                    </div>
-                    
-                    <div class="service-3d">
-                        <div class="service-tag">تایبەت</div>
-                        <h4>سەبسکرایبشن</h4>
-                        <div class="service-price">$8</div>
-                        <ul class="service-list">
-                            <li>Netflix Premium</li>
-                            <li>Spotify Premium</li>
-                            <li>YouTube Premium</li>
-                            <li>Disney+ & More</li>
-                        </ul>
-                        <button class="btn-service" onclick="orderNow('Subscription','$8')">داوا بکە ئێستا</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="about" class="page">
-        <section>
-            <div class="container">
-                <div class="sec-head">
-                    <div class="badge-3d">دەربارەی ئێمە</div>
-                    <h2 class="sec-title">Karo Plus Iraq</h2>
-                    <p class="sec-desc">پێشەنگی خزمەتگوزاری دیجیتاڵی لە عێراق لە 2019ەوە</p>
-                </div>
-                
-                <div class="feat-card" style="max-width:1000px;margin:0 auto">
-                    <h3 style="font-size:34px;margin-bottom:28px;color:var(--p1)">چیرۆکی ئێمە</h3>
-                    <p style="font-size:18px;line-height:2.2;color:var(--text2);margin-bottom:28px">
+                <div class="card-3d" style="margin-bottom:24px">
+                    <h3 style="font-size:22px;margin-bottom:16px;color:var(--p1)">چیرۆکی ئێمە</h3>
+                    <p style="font-size:15px;line-height:2;color:var(--tg-theme-hint-color);margin-bottom:16px">
                         Karo Plus لە ساڵی 2019 دامەزراوە بە ئامانجی پێشکەشکردنی باشترین خزمەتگوزاری دیجیتاڵی لە عێراق. 
-                        لەو کاتەوە تا ئێستا، توانیومانە متمانەی زیاتر لە 50,000 کڕیار بەدەست بهێنین.
+                        لەو کاتەوە تا ئێستا، متمانەی زیاتر لە 50,000 کڕیارمان بەدەست هێناوە.
                     </p>
-                    <p style="font-size:18px;line-height:2.2;color:var(--text2);margin-bottom:28px">
-                        تیمێکی پرۆفیشناڵ و شارەزامان هەیە کە 24/7 ئامادەیە بۆ خزمەتکردنت. ئامانجی ئێمە دابینکردنی 
-                        خزمەتگوزاری بە کوالێتی بەرز، نرخی گونجاو، و خێرایی بێ وێنەیە.
+                    <p style="font-size:15px;line-height:2;color:var(--tg-theme-hint-color)">
+                        تیمێکی پرۆفیشناڵ و شارەزامان هەیە کە 24/7 ئامادەیە بۆ خزمەتکردنت. ئامانجمان کوالێتی بەرز، 
+                        نرخی گونجاو، و خێرایی بێ وێنەیە.
                     </p>
-                    <p style="font-size:18px;line-height:2.2;color:var(--text2)">
-                        باوەڕمان وایە کە هەر کڕیارێک شایەنی باشترین خزمەتگوزاریە. بۆیە هەمیشە هەوڵ دەدەین لە پێشەنگی 
-                        بازاڕ بین و نوێترین ت
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card-3d">
+                        <div class="card-icon">🎯</div>
+                        <h3>ئامانجمان</h3>
+                        <p>پێشکەشکردنی باشترین خزمەتگوزاری دیجیتاڵی</p>
+                    </div>
+                    <div class="card-3d">
+                        <div class="card-icon">👥</div>
+                        <h3>تیمەکەمان</h3>
+                        <p>شارەزای پرۆفیشناڵ و پابەند</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page: Contact -->
+        <div id="contact" class="page">
+            <div style="padding:24px 20px">
+                <div class="sec-header">
+                    <h2 class="sec-title">پەیوەندیمان پێوە بکە</h2>
+                    <p style="color:var(--tg-theme-hint-color);font-size:15px;margin-top:10px">24/7 ئامادەین بۆ وەڵامدانەوە</p>
+                </div>
+                
+                <div class="card-3d" style="margin-bottom:20px" onclick="contactTelegram()">
+                    <div style="display:flex;align-items:center;gap:18px">
+                        <div class="card-icon" style="margin:0">💬</div>
+                        <div style="flex:1">
+                            <h3 style="font-size:18px;margin-bottom:6px">Telegram</h3>
+                            <p style="font-size:14px;color:var(--tg-theme-hint-color)">@KaroPlusSupport</p>
+                        </div>
+                        <div style="font-size:24px;color:var(--accent)">→</div>
+                    </div>
+                </div>
+                
+                <div class="card-3d" style="margin-bottom:20px" onclick="contactWhatsApp()">
+                    <div style="display:flex;align-items:center;gap:18px">
+                        <div class="card-icon" style="margin:0">📱</div>
+                        <div style="flex:1">
+                            <h3 style="font-size:18px;margin-bottom:6px">WhatsApp</h3>
+                            <p style="font-size:14px;color:var(--tg-theme-hint-color)">+964 XXX XXXX</p>
+                        </div>
+                        <div style="font-size:24px;color:var(--accent)">→</div>
+                    </div>
+                </div>
+                
+                <div class="card-3d" style="margin-bottom:20px" onclick="contactEmail()">
+                    <div style="display:flex;align-items:center;gap:18px">
+                        <div class="card-icon" style="margin:0">✉️</div>
+                        <div style="flex:1">
+                            <h3 style="font-size:18px;margin-bottom:6px">Email</h3>
+                            <p style="font-size:14px;color:var(--tg-theme-hint-color)">support@karoplus.iq</p>
+                        </div>
+                        <div style="font-size:24px;color:var(--accent)">→</div>
+                    </div>
+                </div>
+                
+                <div class="card-3d">
+                    <div style="display:flex;align-items:center;gap:18px">
+                        <div class="card-icon" style="margin:0">🕐</div>
+                        <div style="flex:1">
+                            <h3 style="font-size:18px;margin-bottom:6px">کاتەکانی کار</h3>
+                            <p style="font-size:14px;color:var(--tg-theme-hint-color);line-height:1.8">
+                                شەممە - پێنجشەممە: 9:00 - 00:00<br>
+                                هەینی: 14:00 - 00:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item active" onclick="showPage('home')">
+                <div class="nav-icon">🏠</div>
+                <div class="nav-label">سەرەتا</div>
+            </div>
+            <div class="nav-item" onclick="showPage('services')">
+                <div class="nav-icon">🛒</div>
+                <div class="nav-label">خزمەت</div>
+            </div>
+            <div class="nav-item" onclick="showPage('features')">
+                <div class="nav-icon">⭐</div>
+                <div class="nav-label">تایبەت</div>
+            </div>
+            <div class="nav-item" onclick="showPage('about')">
+                <div class="nav-icon">ℹ️</div>
+                <div class="nav-label">دەربارە</div>
+            </div>
+            <div class="nav-item" onclick="showPage('contact')">
+                <div class="nav-icon">💬</div>
+                <div class="nav-label">پەیوەندی</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Telegram WebApp Init
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        tg.setHeaderColor('#0f172a');
+        tg.setBackgroundColor('#f8fafc');
+        
+        // Show loading
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+                initUser();
+            }, 800);
+        });
+        
+        // Init User Data from Telegram
+        function initUser() {
+            const user = tg.initDataUnsafe?.user;
+            if (user) {
+                const name = user.first_name + (user.last_name ? ' ' + user.last_name : '');
+                document.getElementById('userName').textContent = name;
+                document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+            }
+        }
+        
+        // Page Navigation
+        let currentPage = 'home';
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('
