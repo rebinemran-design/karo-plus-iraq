@@ -3,24 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karo Plus Iraq | Professional Business Solutions</title>
+    <title>Karo Plus Iraq | Business Digital Solutions</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
         
         *{margin:0;padding:0;box-sizing:border-box}
         
         :root{
-            --primary:#0f172a;
-            --secondary:#1e293b;
-            --accent:#3b82f6;
-            --accent2:#8b5cf6;
-            --gold:#fbbf24;
-            --glass:rgba(255,255,255,0.1);
-            --glass-border:rgba(255,255,255,0.2);
-            --text:#0f172a;
-            --text-light:#64748b;
-            --white:#ffffff;
-            --bg:#f8fafc;
+            --p1:#0f172a;--p2:#1e293b;--accent:#3b82f6;--accent2:#8b5cf6;
+            --gold:#fbbf24;--glass:rgba(255,255,255,0.08);--glass-b:rgba(255,255,255,0.18);
+            --text:#0f172a;--text2:#475569;--white:#fff;--bg:#f8fafc;
         }
         
         html{scroll-behavior:smooth}
@@ -30,708 +22,363 @@
             background:var(--bg);
             color:var(--text);
             overflow-x:hidden;
-            perspective:1000px;
+            perspective:1500px;
         }
         
-        /* 3D Animated Background */
+        /* 3D Animated BG */
         .bg-3d{
-            position:fixed;
-            inset:0;
-            z-index:0;
+            position:fixed;inset:0;z-index:0;
             background:linear-gradient(135deg,#667eea 0%,#764ba2 25%,#f093fb 50%,#4facfe 75%,#00f2fe 100%);
-            background-size:400% 400%;
-            animation:gradientFlow 20s ease infinite;
-            opacity:0.08;
+            background-size:500% 500%;
+            animation:bgFlow 25s ease infinite;
+            opacity:0.06;
         }
-        
-        @keyframes gradientFlow{
+        @keyframes bgFlow{
             0%,100%{background-position:0% 50%}
             50%{background-position:100% 50%}
         }
         
-        /* Floating 3D Shapes */
+        /* 3D Floating Shapes */
         .shape{
-            position:fixed;
-            border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;
-            filter:blur(60px);
-            opacity:0.15;
-            animation:float3D 25s ease-in-out infinite;
-            z-index:0;
+            position:fixed;border-radius:40% 60% 40%/60% 30% 70% 40%;
+            filter:blur(70px);opacity:0.12;
+            animation:float3D 30s ease-in-out infinite;z-index:0;
         }
-        
-        .shape1{
-            width:500px;
-            height:500px;
-            background:linear-gradient(135deg,var(--accent),var(--accent2));
-            top:-200px;
-            right:-200px;
-        }
-        
-        .shape2{
-            width:400px;
-            height:400px;
-            background:linear-gradient(135deg,var(--gold),var(--accent));
-            bottom:-150px;
-            left:-150px;
-            animation-delay:-12s;
-        }
-        
+        .s1{width:600px;height:600px;background:linear-gradient(135deg,var(--accent),var(--accent2));top:-300px;right:-300px}
+        .s2{width:500px;height:500px;background:linear-gradient(135deg,var(--gold),var(--accent));bottom:-250px;left:-250px;animation-delay:-15s}
+        .s3{width:400px;height:400px;background:linear-gradient(135deg,#f093fb,var(--accent2));top:50%;left:50%;animation-delay:-7s}
         @keyframes float3D{
             0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
-            25%{transform:translate3d(50px,-80px,50px) rotate(90deg) scale(1.1)}
-            50%{transform:translate3d(-30px,40px,100px) rotate(180deg) scale(0.9)}
-            75%{transform:translate3d(40px,60px,50px) rotate(270deg) scale(1.05)}
+            33%{transform:translate3d(80px,-100px,100px) rotate(120deg) scale(1.2)}
+            66%{transform:translate3d(-60px,80px,50px) rotate(240deg) scale(0.8)}
         }
         
-        .container{
-            position:relative;
-            z-index:1;
-            max-width:1400px;
-            margin:0 auto;
-            padding:0 30px;
-        }
+        .container{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 30px}
         
-        /* Glass Header */
+        /* Glass Header 3D */
         header{
-            position:sticky;
-            top:0;
-            z-index:1000;
-            background:rgba(255,255,255,0.8);
-            backdrop-filter:blur(20px) saturate(180%);
-            border-bottom:1px solid var(--glass-border);
-            box-shadow:0 8px 32px rgba(0,0,0,0.08);
-            transform:translateZ(50px);
+            position:sticky;top:0;z-index:1000;
+            background:rgba(255,255,255,0.85);
+            backdrop-filter:blur(25px) saturate(200%);
+            border-bottom:1px solid var(--glass-b);
+            box-shadow:0 10px 40px rgba(0,0,0,0.08);
+            transform:translateZ(100px);
+            animation:slideDown 0.6s ease;
         }
+        @keyframes slideDown{from{transform:translateY(-100px)}to{transform:translateY(0)}}
         
-        .header-content{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:22px 0;
-        }
+        .header-wrap{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
         
-        .logo{
-            display:flex;
-            align-items:center;
-            gap:15px;
-            cursor:pointer;
-            transition:0.4s;
-        }
-        
-        .logo:hover{
-            transform:translateZ(20px) scale(1.05);
-        }
+        .logo{display:flex;align-items:center;gap:16px;cursor:pointer;transition:0.5s;transform-style:preserve-3d}
+        .logo:hover{transform:translateZ(30px) scale(1.08)}
         
         .logo-icon{
-            width:52px;
-            height:52px;
-            background:linear-gradient(135deg,var(--primary),var(--secondary));
-            border-radius:14px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            color:var(--white);
-            font-weight:700;
-            font-size:22px;
-            box-shadow:0 10px 30px rgba(15,23,42,0.3);
-            transform:rotateX(10deg) rotateY(-10deg);
-            transition:0.4s;
+            width:56px;height:56px;
+            background:linear-gradient(135deg,var(--p1),var(--p2));
+            border-radius:16px;display:flex;align-items:center;justify-content:center;
+            color:var(--white);font-weight:700;font-size:24px;
+            box-shadow:0 15px 40px rgba(15,23,42,0.4);
+            transform:rotateX(12deg) rotateY(-12deg);
+            transition:0.5s;
         }
+        .logo:hover .logo-icon{transform:rotateX(0) rotateY(0) scale(1.15)}
         
-        .logo:hover .logo-icon{
-            transform:rotateX(0deg) rotateY(0deg) scale(1.1);
-        }
+        .logo-text h1{font-size:26px;font-weight:700;color:var(--p1);letter-spacing:-0.5px}
+        .logo-text p{font-size:11px;color:var(--text2);font-weight:600;letter-spacing:2px}
         
-        .logo-text h1{
-            font-size:24px;
-            font-weight:700;
-            color:var(--primary);
-            letter-spacing:-0.5px;
-        }
-        
-        .logo-text p{
-            font-size:11px;
-            color:var(--text-light);
-            font-weight:500;
-            letter-spacing:1px;
-        }
-        
-        nav ul{
-            display:flex;
-            gap:8px;
-            list-style:none;
-        }
-        
+        nav ul{display:flex;gap:6px;list-style:none}
         nav a{
-            color:var(--text);
-            text-decoration:none;
-            font-weight:600;
-            font-size:15px;
-            padding:12px 24px;
-            border-radius:10px;
-            transition:0.3s;
-            position:relative;
-            display:block;
+            color:var(--text);text-decoration:none;font-weight:600;font-size:15px;
+            padding:14px 28px;border-radius:12px;transition:0.4s;
+            display:block;position:relative;overflow:hidden;
+        }
+        nav a::before{
+            content:'';position:absolute;inset:0;
+            background:linear-gradient(135deg,var(--accent),var(--accent2));
+            opacity:0;transition:0.4s;z-index:-1;
+        }
+        nav a:hover::before,nav a.active::before{opacity:1}
+        nav a:hover,nav a.active{color:var(--white);transform:translateY(-3px) translateZ(20px);box-shadow:0 10px 30px rgba(59,130,246,0.4)}
+        
+        /* Page System */
+        .page{display:none;animation:pageEnter 0.7s cubic-bezier(0.4,0,0.2,1)}
+        .page.active{display:block}
+        @keyframes pageEnter{
+            from{opacity:0;transform:translateY(50px) rotateX(-15deg) scale(0.95)}
+            to{opacity:1;transform:translateY(0) rotateX(0) scale(1)}
         }
         
-        nav a:hover,nav a.active{
-            background:var(--primary);
-            color:var(--white);
-            transform:translateY(-2px);
-            box-shadow:0 8px 20px rgba(15,23,42,0.2);
-        }
-        
-        /* Pages */
-        .page{
-            display:none;
-            animation:pageSlideIn 0.6s cubic-bezier(0.4,0,0.2,1);
-        }
-        
-        .page.active{
-            display:block;
-        }
-        
-        @keyframes pageSlideIn{
-            from{
-                opacity:0;
-                transform:translateY(30px) rotateX(-10deg);
-            }
-            to{
-                opacity:1;
-                transform:translateY(0) rotateX(0);
-            }
-        }
-        
-        /* Hero Section */
+        /* Hero 3D */
         .hero{
-            background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 100%);
-            color:var(--white);
-            padding:120px 0 100px 0;
-            position:relative;
-            overflow:hidden;
-            transform-style:preserve-3d;
+            background:linear-gradient(135deg,var(--p1) 0%,var(--p2) 100%);
+            color:var(--white);padding:140px 0 120px 0;
+            position:relative;overflow:hidden;transform-style:preserve-3d;
         }
-        
-        .hero::after{
-            content:'';
-            position:absolute;
-            bottom:0;
-            left:0;
-            width:100%;
-            height:100px;
-            background:linear-gradient(to top,var(--bg),transparent);
+        .hero::before{
+            content:'';position:absolute;top:0;right:0;width:60%;height:100%;
+            background:rgba(255,255,255,0.04);
+            clip-path:polygon(25% 0,100% 0,100% 100%,0 100%);
+            animation:slideRight 20s ease-in-out infinite;
         }
+        @keyframes slideRight{0%,100%{transform:translateX(0)}50%{transform:translateX(50px)}}
         
-        .hero-content{
-            position:relative;
-            z-index:1;
-            display:grid;
-            grid-template-columns:1.3fr 1fr;
-            gap:80px;
-            align-items:center;
+        .hero-grid{
+            position:relative;z-index:1;
+            display:grid;grid-template-columns:1.2fr 1fr;gap:100px;align-items:center;
         }
         
         .hero-text h2{
-            font-size:56px;
-            font-weight:700;
-            margin-bottom:25px;
-            line-height:1.2;
-            animation:fadeInUp 0.8s ease;
+            font-size:62px;font-weight:700;margin-bottom:28px;line-height:1.2;
+            animation:fadeInScale 1s ease;
         }
-        
-        @keyframes fadeInUp{
-            from{opacity:0;transform:translateY(40px)}
-            to{opacity:1;transform:translateY(0)}
-        }
+        @keyframes fadeInScale{from{opacity:0;transform:scale(0.8) translateY(30px)}to{opacity:1;transform:scale(1) translateY(0)}}
         
         .hero-text p{
-            font-size:19px;
-            opacity:0.9;
-            margin-bottom:40px;
-            line-height:1.8;
-            animation:fadeInUp 0.8s ease 0.2s backwards;
+            font-size:20px;opacity:0.92;margin-bottom:45px;line-height:1.9;
+            animation:fadeInScale 1s ease 0.2s backwards;
         }
         
-        .btn-group{
-            display:flex;
-            gap:20px;
-            animation:fadeInUp 0.8s ease 0.4s backwards;
-        }
+        .btn-group{display:flex;gap:22px;animation:fadeInScale 1s ease 0.4s backwards}
         
         .btn{
-            padding:18px 45px;
-            border:none;
-            border-radius:12px;
-            font-size:16px;
-            font-weight:600;
-            font-family:'Noto Sans Arabic',sans-serif;
-            cursor:pointer;
-            transition:0.4s;
-            display:inline-flex;
-            align-items:center;
-            gap:10px;
-            position:relative;
-            overflow:hidden;
+            padding:20px 50px;border:none;border-radius:14px;
+            font-size:17px;font-weight:600;font-family:'Noto Sans Arabic',sans-serif;
+            cursor:pointer;transition:0.5s;display:inline-flex;align-items:center;gap:12px;
+            position:relative;overflow:hidden;transform-style:preserve-3d;
         }
-        
-        .btn::before{
-            content:'';
-            position:absolute;
-            top:50%;
-            left:50%;
-            width:0;
-            height:0;
-            border-radius:50%;
-            background:rgba(255,255,255,0.3);
-            transform:translate(-50%,-50%);
-            transition:0.6s;
+        .btn::after{
+            content:'';position:absolute;top:50%;left:50%;width:0;height:0;
+            border-radius:50%;background:rgba(255,255,255,0.4);
+            transform:translate(-50%,-50%);transition:0.6s;
         }
-        
-        .btn:hover::before{
-            width:300px;
-            height:300px;
-        }
+        .btn:hover::after{width:400px;height:400px}
         
         .btn-primary{
-            background:var(--white);
-            color:var(--primary);
-            box-shadow:0 15px 40px rgba(0,0,0,0.2);
+            background:var(--white);color:var(--p1);
+            box-shadow:0 20px 50px rgba(0,0,0,0.25);
         }
+        .btn-primary:hover{transform:translateY(-5px) translateZ(30px) scale(1.05);box-shadow:0 30px 70px rgba(0,0,0,0.35)}
         
-        .btn-primary:hover{
-            transform:translateY(-3px) translateZ(20px);
-            box-shadow:0 20px 50px rgba(0,0,0,0.3);
+        .btn-glass{
+            background:rgba(255,255,255,0.12);backdrop-filter:blur(15px);
+            color:var(--white);border:2px solid rgba(255,255,255,0.3);
         }
+        .btn-glass:hover{background:rgba(255,255,255,0.2);transform:translateY(-5px)}
         
-        .btn-secondary{
-            background:rgba(255,255,255,0.15);
-            backdrop-filter:blur(10px);
-            color:var(--white);
-            border:2px solid rgba(255,255,255,0.3);
-        }
-        
-        .btn-secondary:hover{
-            background:rgba(255,255,255,0.25);
-            transform:translateY(-3px);
-        }
-        
-        /* 3D Cards Grid */
         .hero-cards{
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:20px;
-            animation:fadeInUp 0.8s ease 0.6s backwards;
+            display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+            animation:fadeInScale 1s ease 0.6s backwards;
         }
         
-        .glass-card-3d{
-            background:var(--glass);
-            backdrop-filter:blur(20px) saturate(180%);
-            border:1px solid var(--glass-border);
-            padding:35px 30px;
-            border-radius:20px;
-            box-shadow:0 20px 60px rgba(0,0,0,0.3);
-            transition:0.4s;
-            transform-style:preserve-3d;
+        .card-3d{
+            background:var(--glass);backdrop-filter:blur(25px) saturate(200%);
+            border:1px solid var(--glass-b);padding:40px 35px;border-radius:24px;
+            box-shadow:0 25px 70px rgba(0,0,0,0.35);
+            transition:0.6s;transform-style:preserve-3d;
+        }
+        .card-3d:hover{
+            transform:translateY(-15px) rotateX(8deg) rotateY(-8deg) translateZ(40px);
+            box-shadow:0 40px 100px rgba(0,0,0,0.5);
         }
         
-        .glass-card-3d:hover{
-            transform:translateY(-10px) rotateX(5deg) rotateY(-5deg) translateZ(30px);
-            box-shadow:0 30px 80px rgba(0,0,0,0.4);
-        }
-        
-        .card-number{
-            font-size:48px;
-            font-weight:700;
-            margin-bottom:10px;
-        }
-        
-        .card-label{
-            font-size:15px;
-            opacity:0.9;
-        }
+        .card-num{font-size:54px;font-weight:700;margin-bottom:12px}
+        .card-label{font-size:16px;opacity:0.9}
         
         /* Section */
-        section{
-            padding:100px 0;
-        }
+        section{padding:120px 0}
         
-        .section-header{
-            text-align:center;
-            margin-bottom:70px;
-        }
+        .sec-head{text-align:center;margin-bottom:80px}
         
-        .section-badge{
-            display:inline-block;
-            padding:10px 25px;
+        .badge-3d{
+            display:inline-block;padding:12px 30px;
             background:linear-gradient(135deg,var(--accent),var(--accent2));
-            color:var(--white);
-            border-radius:50px;
-            font-size:14px;
-            font-weight:600;
-            margin-bottom:20px;
-            box-shadow:0 8px 25px rgba(59,130,246,0.3);
+            color:var(--white);border-radius:50px;font-size:14px;font-weight:700;
+            margin-bottom:25px;box-shadow:0 12px 35px rgba(59,130,246,0.4);
+            animation:pulse3D 3s ease-in-out infinite;
         }
+        @keyframes pulse3D{0%,100%{transform:scale(1) translateZ(0)}50%{transform:scale(1.05) translateZ(20px)}}
         
-        .section-title{
-            font-size:42px;
-            font-weight:700;
-            color:var(--primary);
-            margin-bottom:18px;
+        .sec-title{font-size:48px;font-weight:700;color:var(--p1);margin-bottom:20px}
+        .sec-desc{font-size:19px;color:var(--text2);max-width:700px;margin:0 auto;line-height:1.9}
+        
+        /* Features 3D Grid */
+        .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+        
+        .feat-card{
+            background:var(--white);padding:50px 40px;border-radius:24px;
+            border:2px solid #e2e8f0;transition:0.6s;transform-style:preserve-3d;
+            position:relative;overflow:hidden;
         }
-        
-        .section-desc{
-            font-size:18px;
-            color:var(--text-light);
-            max-width:650px;
-            margin:0 auto;
-            line-height:1.8;
-        }
-        
-        /* Features Grid */
-        .features-grid{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:35px;
-        }
-        
-        .feature-card-3d{
-            background:var(--white);
-            padding:45px 35px;
-            border-radius:20px;
-            border:2px solid var(--gray-200);
-            transition:0.5s;
-            transform-style:preserve-3d;
-            position:relative;
-            overflow:hidden;
-        }
-        
-        .feature-card-3d::before{
-            content:'';
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:5px;
+        .feat-card::before{
+            content:'';position:absolute;top:0;left:0;width:100%;height:6px;
             background:linear-gradient(90deg,var(--accent),var(--accent2));
-            transform:scaleX(0);
-            transition:0.5s;
+            transform:scaleX(0);transition:0.6s;
+        }
+        .feat-card:hover::before{transform:scaleX(1)}
+        .feat-card:hover{
+            transform:translateY(-15px) rotateX(8deg) translateZ(30px);
+            box-shadow:0 35px 70px rgba(0,0,0,0.15);border-color:var(--accent);
         }
         
-        .feature-card-3d:hover::before{
-            transform:scaleX(1);
-        }
-        
-        .feature-card-3d:hover{
-            transform:translateY(-12px) rotateX(5deg) translateZ(20px);
-            box-shadow:0 30px 60px rgba(0,0,0,0.12);
-            border-color:var(--accent);
-        }
-        
-        .feature-icon-3d{
-            width:70px;
-            height:70px;
+        .feat-icon{
+            width:80px;height:80px;
             background:linear-gradient(135deg,var(--accent),var(--accent2));
-            border-radius:18px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:32px;
-            margin-bottom:25px;
-            box-shadow:0 15px 35px rgba(59,130,246,0.3);
+            border-radius:20px;display:flex;align-items:center;justify-content:center;
+            font-size:38px;margin-bottom:28px;
+            box-shadow:0 20px 45px rgba(59,130,246,0.35);
             transform:rotateX(15deg) rotateY(-15deg);
-            transition:0.4s;
+            transition:0.6s;
         }
+        .feat-card:hover .feat-icon{transform:rotateX(0) rotateY(0) scale(1.15) translateZ(20px)}
         
-        .feature-card-3d:hover .feature-icon-3d{
-            transform:rotateX(0) rotateY(0) scale(1.1);
-        }
-        
-        .feature-card-3d h3{
-            font-size:22px;
-            font-weight:700;
-            color:var(--primary);
-            margin-bottom:15px;
-        }
-        
-        .feature-card-3d p{
-            font-size:15px;
-            color:var(--text-light);
-            line-height:1.9;
-        }
+        .feat-card h3{font-size:24px;font-weight:700;color:var(--p1);margin-bottom:16px}
+        .feat-card p{font-size:16px;color:var(--text2);line-height:2}
         
         /* Services */
-        .services-section{
-            background:var(--white);
-        }
+        .services-wrap{background:var(--white)}
         
-        .services-grid{
-            display:grid;
-            grid-template-columns:repeat(4,1fr);
-            gap:30px;
-        }
+        .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:35px}
         
-        .service-card-3d{
-            background:var(--bg);
-            padding:40px 30px;
-            border-radius:18px;
-            border:2px solid transparent;
-            text-align:center;
-            transition:0.5s;
+        .service-3d{
+            background:var(--bg);padding:45px 35px;border-radius:22px;
+            border:3px solid transparent;text-align:center;transition:0.6s;
             transform-style:preserve-3d;
         }
-        
-        .service-card-3d:hover{
-            background:var(--white);
-            border-color:var(--accent);
-            transform:translateY(-10px) rotateY(5deg) translateZ(25px);
-            box-shadow:0 25px 50px rgba(0,0,0,0.1);
+        .service-3d:hover{
+            background:var(--white);border-color:var(--accent);
+            transform:translateY(-12px) rotateY(8deg) translateZ(35px);
+            box-shadow:0 30px 60px rgba(0,0,0,0.12);
         }
         
-        .service-badge{
-            display:inline-block;
-            padding:6px 16px;
-            background:var(--accent);
-            color:var(--white);
-            border-radius:6px;
-            font-size:12px;
-            font-weight:600;
-            margin-bottom:20px;
+        .service-tag{
+            display:inline-block;padding:8px 20px;
+            background:var(--accent);color:var(--white);border-radius:8px;
+            font-size:12px;font-weight:700;margin-bottom:22px;
         }
         
-        .service-card-3d h4{
-            font-size:20px;
-            font-weight:700;
-            color:var(--primary);
-            margin-bottom:15px;
-        }
+        .service-3d h4{font-size:22px;font-weight:700;color:var(--p1);margin-bottom:18px}
         
         .service-price{
-            font-size:38px;
-            font-weight:700;
+            font-size:44px;font-weight:700;
             background:linear-gradient(135deg,var(--accent),var(--accent2));
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            margin:20px 0;
-        }
-        
-        .service-features{
-            list-style:none;
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
             margin:25px 0;
-            text-align:right;
         }
         
-        .service-features li{
-            padding:10px 0;
-            font-size:14px;
-            color:var(--text-light);
-            border-bottom:1px solid var(--gray-200);
-        }
-        
-        .service-features li:last-child{
-            border-bottom:none;
-        }
+        .service-list{list-style:none;margin:30px 0;text-align:right}
+        .service-list li{padding:12px 0;font-size:15px;color:var(--text2);border-bottom:1px solid #e2e8f0}
+        .service-list li:last-child{border-bottom:none}
         
         .btn-service{
-            width:100%;
-            padding:14px;
-            background:var(--primary);
-            color:var(--white);
-            border:none;
-            border-radius:10px;
-            font-size:15px;
-            font-weight:600;
-            font-family:'Noto Sans Arabic',sans-serif;
-            cursor:pointer;
-            transition:0.3s;
+            width:100%;padding:16px;background:var(--p1);color:var(--white);
+            border:none;border-radius:12px;font-size:16px;font-weight:600;
+            font-family:'Noto Sans Arabic',sans-serif;cursor:pointer;transition:0.4s;
         }
+        .btn-service:hover{background:var(--p2);transform:scale(1.08)}
         
-        .btn-service:hover{
-            background:var(--secondary);
-            transform:scale(1.05);
-        }
-        
-        /* Stats */
+        /* Stats Banner */
         .stats-banner{
-            background:linear-gradient(135deg,var(--primary),var(--secondary));
-            color:var(--white);
-            padding:80px 0;
-            position:relative;
-            overflow:hidden;
+            background:linear-gradient(135deg,var(--p1),var(--p2));
+            color:var(--white);padding:90px 0;position:relative;overflow:hidden;
         }
-        
         .stats-banner::before{
-            content:'';
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
-            opacity:0.3;
+            content:'';position:absolute;inset:0;
+            background:url('data:image/svg+xml,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="3" fill="white" opacity="0.1"/></svg>');
+            animation:slidePattern 30s linear infinite;
         }
+        @keyframes slidePattern{from{background-position:0 0}to{background-position:120px 120px}}
         
-        .stats-row{
-            display:grid;
-            grid-template-columns:repeat(4,1fr);
-            gap:50px;
-            text-align:center;
-            position:relative;
-        }
+        .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:60px;text-align:center;position:relative}
         
         .stat-item h3{
-            font-size:56px;
-            font-weight:700;
-            margin-bottom:12px;
-            animation:countUp 2s ease;
+            font-size:64px;font-weight:700;margin-bottom:15px;
+            animation:countPulse 2s ease infinite;
         }
-        
-        @keyframes countUp{
-            from{opacity:0;transform:scale(0.5)}
-            to{opacity:1;transform:scale(1)}
-        }
-        
-        .stat-item p{
-            font-size:17px;
-            opacity:0.9;
-        }
+        @keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+        .stat-item p{font-size:18px;opacity:0.9}
         
         /* Contact */
-        .contact-grid{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:50px;
-            align-items:start;
-        }
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
         
         .contact-info{
-            background:var(--white);
-            padding:50px;
-            border-radius:20px;
-            box-shadow:0 20px 60px rgba(0,0,0,0.08);
+            background:var(--white);padding:60px;border-radius:28px;
+            box-shadow:0 25px 70px rgba(0,0,0,0.1);
         }
         
         .contact-item{
-            display:flex;
-            align-items:start;
-            gap:20px;
-            margin-bottom:30px;
-            padding-bottom:30px;
-            border-bottom:1px solid var(--gray-200);
+            display:flex;align-items:start;gap:24px;
+            margin-bottom:35px;padding-bottom:35px;border-bottom:2px solid #f1f5f9;
         }
-        
-        .contact-item:last-child{
-            border-bottom:none;
-            margin-bottom:0;
-            padding-bottom:0;
-        }
+        .contact-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
         
         .contact-icon{
-            width:55px;
-            height:55px;
+            width:65px;height:65px;
             background:linear-gradient(135deg,var(--accent),var(--accent2));
-            border-radius:14px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:24px;
-            flex-shrink:0;
+            border-radius:18px;display:flex;align-items:center;justify-content:center;
+            font-size:28px;flex-shrink:0;
+            box-shadow:0 15px 40px rgba(59,130,246,0.3);
         }
         
-        .contact-details h4{
-            font-size:18px;
-            font-weight:700;
-            color:var(--primary);
-            margin-bottom:8px;
-        }
-        
-        .contact-details p{
-            font-size:15px;
-            color:var(--text-light);
-        }
+        .contact-details h4{font-size:20px;font-weight:700;color:var(--p1);margin-bottom:10px}
+        .contact-details p{font-size:16px;color:var(--text2)}
         
         /* Footer */
         footer{
-            background:var(--primary);
-            color:var(--white);
-            padding:70px 0 30px 0;
-            margin-top:100px;
+            background:var(--p1);color:var(--white);
+            padding:80px 0 35px 0;margin-top:120px;
         }
         
         .footer-grid{
-            display:grid;
-            grid-template-columns:2fr 1fr 1fr 1fr;
-            gap:60px;
-            margin-bottom:50px;
+            display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:70px;margin-bottom:60px;
         }
         
-        .footer-col h4{
-            font-size:19px;
-            font-weight:700;
-            margin-bottom:25px;
-        }
-        
-        .footer-col p{
-            font-size:14px;
-            opacity:0.8;
-            line-height:1.9;
-        }
-        
-        .footer-col ul{
-            list-style:none;
-        }
-        
-        .footer-col ul li{
-            margin-bottom:14px;
-        }
-        
+        .footer-col h4{font-size:20px;font-weight:700;margin-bottom:28px}
+        .footer-col p{font-size:15px;opacity:0.8;line-height:2}
+        .footer-col ul{list-style:none}
+        .footer-col ul li{margin-bottom:16px}
         .footer-col ul li a{
-            color:rgba(255,255,255,0.8);
-            text-decoration:none;
-            font-size:14px;
-            transition:0.2s;
+            color:rgba(255,255,255,0.8);text-decoration:none;font-size:15px;transition:0.3s;
         }
-        
-        .footer-col ul li a:hover{
-            color:var(--white);
-            padding-right:5px;
-        }
+        .footer-col ul li a:hover{color:var(--white);padding-right:8px}
         
         .footer-bottom{
-            border-top:1px solid rgba(255,255,255,0.1);
-            padding-top:30px;
-            text-align:center;
-            font-size:14px;
-            opacity:0.7;
+            border-top:1px solid rgba(255,255,255,0.15);
+            padding-top:35px;text-align:center;font-size:15px;opacity:0.7;
         }
+        
+        /* Mobile Menu */
+        .menu-toggle{display:none}
         
         /* Responsive */
         @media(max-width:1024px){
-            .hero-content{grid-template-columns:1fr}
-            .features-grid{grid-template-columns:repeat(2,1fr)}
+            .hero-grid{grid-template-columns:1fr}
+            .feat-grid{grid-template-columns:repeat(2,1fr)}
             .services-grid{grid-template-columns:repeat(2,1fr)}
             .contact-grid{grid-template-columns:1fr}
         }
         
         @media(max-width:768px){
-            .hero-text h2{font-size:40px}
-            .features-grid{grid-template-columns:1fr}
+            .hero-text h2{font-size:42px}
+            .feat-grid{grid-template-columns:1fr}
             .services-grid{grid-template-columns:1fr}
             .stats-row{grid-template-columns:repeat(2,1fr)}
             .footer-grid{grid-template-columns:1fr}
             nav ul{display:none}
+            .menu-toggle{display:block}
             .btn-group{flex-direction:column}
         }
     </style>
 </head>
 <body>
     <div class="bg-3d"></div>
-    <div class="shape shape1"></div>
-    <div class="shape shape2"></div>
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
     
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="header-content">
+            <div class="header-wrap">
                 <div class="logo" onclick="showPage('home')">
                     <div class="logo-icon">KP</div>
                     <div class="logo-text">
@@ -741,11 +388,11 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#" onclick="showPage('home')" class="nav-link active">سەرەتا</a></li>
-                        <li><a href="#" onclick="showPage('services')" class="nav-link">خزمەتگوزاری</a></li>
-                        <li><a href="#" onclick="showPage('features')" class="nav-link">تایبەتمەندی</a></li>
-                        <li><a href="#" onclick="showPage('about')" class="nav-link">دەربارە</a></li>
-                        <li><a href="#" onclick="showPage('contact')" class="nav-link">پەیوەندی</a></li>
+                        <li><a href="#" onclick="showPage('home');return false;" class="nav-link active">سەرەتا</a></li>
+                        <li><a href="#" onclick="showPage('services');return false;" class="nav-link">خزمەتگوزاری</a></li>
+                        <li><a href="#" onclick="showPage('features');return false;" class="nav-link">تایبەتمەندی</a></li>
+                        <li><a href="#" onclick="showPage('about');return false;" class="nav-link">دەربارە</a></li>
+                        <li><a href="#" onclick="showPage('contact');return false;" class="nav-link">پەیوەندی</a></li>
                     </ul>
                 </nav>
             </div>
@@ -754,10 +401,9 @@
 
     <!-- Page: Home -->
     <div id="home" class="page active">
-        <!-- Hero -->
         <section class="hero">
             <div class="container">
-                <div class="hero-content">
+                <div class="hero-grid">
                     <div class="hero-text">
                         <h2>چارەسەری دیجیتاڵی پرۆفیشناڵ بۆ بازرگانی مۆدێرن</h2>
                         <p>پێشکەشکردنی باشترین خزمەتگوزاری بە ستانداردی جیهانی لە عێراق. متمانە، کوالێتی، خێرایی.</p>
@@ -765,25 +411,25 @@
                             <button class="btn btn-primary" onclick="showPage('services')">
                                 دەستپێبکە ئێستا
                             </button>
-                            <button class="btn btn-secondary" onclick="showPage('contact')">
+                            <button class="btn btn-glass" onclick="showPage('contact')">
                                 پەیوەندی بە ئێمە
                             </button>
                         </div>
                     <div class="hero-cards">
-                        <div class="glass-card-3d">
-                            <div class="card-number">50K+</div>
+                        <div class="card-3d">
+                            <div class="card-num">50K+</div>
                             <div class="card-label">کڕیاری چالاک</div>
                         </div>
-                        <div class="glass-card-3d">
-                            <div class="card-number">99.2%</div>
+                        <div class="card-3d">
+                            <div class="card-num">99.2%</div>
                             <div class="card-label">ڕێژەی سەرکەوتن</div>
                         </div>
-                        <div class="glass-card-3d">
-                            <div class="card-number">24/7</div>
+                        <div class="card-3d">
+                            <div class="card-num">24/7</div>
                             <div class="card-label">پشتیوانی</div>
                         </div>
-                        <div class="glass-card-3d">
-                            <div class="card-number">5+</div>
+                        <div class="card-3d">
+                            <div class="card-num">5+</div>
                             <div class="card-label">ساڵ ئەزموون</div>
                         </div>
                     </div>
@@ -791,48 +437,42 @@
             </div>
         </section>
 
-        <!-- Features -->
         <section id="features">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">تایبەتمەندیەکانمان</div>
-                    <h2 class="section-title">بۆچی Karo Plus هەڵبژێریت؟</h2>
-                    <p class="section-desc">پێشکەشکردنی خزمەتگوزاری پرۆفیشناڵ بە ستانداردی جیهانی</p>
+                <div class="sec-head">
+                    <div class="badge-3d">تایبەتمەندیەکانمان</div>
+                    <h2 class="sec-title">بۆچی Karo Plus هەڵبژێریت؟</h2>
+                    <p class="sec-desc">پێشکەشکردنی خزمەتگوزاری پرۆفیشناڵ بە ستانداردی جیهانی</p>
                 </div>
                 
-                <div class="features-grid">
-                    <div class="feature-card-3d">
-                        <div class="feature-icon-3d">⚡</div>
+                <div class="feat-grid">
+                    <div class="feat-card">
+                        <div class="feat-icon">⚡</div>
                         <h3>خێرایی لە جێبەجێکردن</h3>
                         <p>هەموو داواکاریەکان لە ماوەی 24 کاتژمێردا تەواو دەکرێن بە کوالێتی بەرز و وردەکاری تەواو</p>
                     </div>
-                    
-                    <div class="feature-card-3d">
-                        <div class="feature-icon-3d">🛡️</div>
+                    <div class="feat-card">
+                        <div class="feat-icon">🛡️</div>
                         <h3>گرەنتی کوالێتی</h3>
                         <p>گرەنتی 100% لەسەر هەموو خزمەتگوزاریەکانمان لەگەڵ گەڕاندنەوەی پارە</p>
                     </div>
-                    
-                    <div class="feature-card-3d">
-                        <div class="feature-icon-3d">💬</div>
+                    <div class="feat-card">
+                        <div class="feat-icon">💬</div>
                         <h3>پشتیوانی 24/7</h3>
                         <p>تیمی پشتیوانی پرۆفیشناڵ بەردەوام ئامادەیە بۆ وەڵامدانەوەی پرسیارەکانتان</p>
                     </div>
-                    
-                    <div class="feature-card-3d">
-                        <div class="feature-icon-3d">💰</div>
+                    <div class="feat-card">
+                        <div class="feat-icon">💰</div>
                         <h3>نرخی کێبڕکێکار</h3>
                         <p>باشترین نرخ لە بازاڕ لەگەڵ داشکاندنی تایبەت بۆ کڕیاری بەردەوام</p>
                     </div>
-                    
-                    <div class="feature-card-3d">
-                        <div class="feature-icon-3d">🔒</div>
+                    <div class="feat-card">
+                        <div class="feat-icon">🔒</div>
                         <h3>ئاسایشی تەواو</h3>
                         <p>پارەدانی ئارام و پارێزراو لەگەڵ پاراستنی زانیاری کەسی بە تەواوی</p>
                     </div>
-                    
-                    <div class="feature-card-3d">
-                        <div class="feature-icon-3d">📊</div>
+                    <div class="feat-card">
+                        <div class="feat-icon">📊</div>
                         <h3>متمانەی سەلمێنراو</h3>
                         <p>5+ ساڵ ئەزموون لەگەڵ زیاتر لە 50,000 کڕیاری ڕازی لە سەرانسەری عێراق</p>
                     </div>
@@ -840,7 +480,6 @@
             </div>
         </section>
 
-        <!-- Stats Banner -->
         <section class="stats-banner">
             <div class="container">
                 <div class="stats-row">
@@ -867,65 +506,65 @@
 
     <!-- Page: Services -->
     <div id="services" class="page">
-        <section class="services-section">
+        <section class="services-wrap">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">خزمەتگوزاریەکان</div>
-                    <h2 class="section-title">چارەسەری تەواو بۆ پێداویستیەکانت</h2>
-                    <p class="section-desc">هەموو ئەو خزمەتگوزاریانەی پێویستتە لە یەک شوێن</p>
+                <div class="sec-head">
+                    <div class="badge-3d">خزمەتگوزاریەکان</div>
+                    <h2 class="sec-title">چارەسەری تەواو بۆ پێداویستیەکانت</h2>
+                    <p class="sec-desc">هەموو ئەو خزمەتگوزاریانەی پێویستتە لە یەک شوێن</p>
                 </div>
                 
                 <div class="services-grid">
-                    <div class="service-card-3d">
-                        <div class="service-badge">بەناوبانگ</div>
+                    <div class="service-3d">
+                        <div class="service-tag">بەناوبانگ</div>
                         <h4>سۆشیال میدیا</h4>
                         <div class="service-price">$5</div>
-                        <ul class="service-features">
+                        <ul class="service-list">
                             <li>فۆڵۆوەری ڕاستەقینە</li>
                             <li>لایک و کۆمێنت</li>
                             <li>بینینی ڤیدیۆ</li>
                             <li>گەشەکردنی خێرا</li>
                         </ul>
-                        <button class="btn-service" onclick="orderService('Social Media')">داوا بکە</button>
+                        <button class="btn-service" onclick="orderNow('Social Media','$5')">داوا بکە ئێستا</button>
                     </div>
                     
-                    <div class="service-card-3d">
-                        <div class="service-badge">نوێ</div>
+                    <div class="service-3d">
+                        <div class="service-tag">نوێ</div>
                         <h4>یاریە ئەلیکترۆنیەکان</h4>
                         <div class="service-price">$10</div>
-                        <ul class="service-features">
+                        <ul class="service-list">
                             <li>شداتی یاری</li>
                             <li>ئەکاونتی پریمیوم</li>
                             <li>ئایتم و سکین</li>
                             <li>بەرزکردنەوەی ئاست</li>
                         </ul>
-                        <button class="btn-service" onclick="orderService('Gaming')">داوا بکە</button>
+                        <button class="btn-service" onclick="orderNow('Gaming','$10')">داوا بکە ئێستا</button>
                     </div>
                     
-                    <div class="service-card-3d">
-                        <div class="service-badge">زۆر داواکراو</div>
+                    <div class="service-3d">
+                        <div class="service-tag">زۆر داواکراو</div>
                         <h4>کارتی پارەدان</h4>
                         <div class="service-price">$15</div>
-                        <ul class="service-features">
+                        <ul class="service-list">
                             <li>Google Play</li>
                             <li>Apple Gift Card</li>
                             <li>Steam Wallet</li>
                             <li>PlayStation Store</li>
                         </ul>
-                        <button class="btn-service" onclick="orderService('Gift Cards')">داوا بکە</button>
+                        <button class="btn-service" onclick="orderNow('Gift Cards','$15')">داوا بکە ئێستا</button>
                     </div>
                     
-                    <div class="service-card-3d">
-                        <div class="service-badge">تایبەت</div>
+                    <div class="service-3d">
+                        <div class="service-tag">تایبەت</div>
                         <h4>سەبسکرایبشن</h4>
                         <div class="service-price">$8</div>
-                        <ul class="service-features">
+                        <ul class="service-list">
                             <li>Netflix Premium</li>
                             <li>Spotify Premium</li>
                             <li>YouTube Premium</li>
                             <li>Disney+ & More</li>
                         </ul>
-                        <button class="btn-service" onclick="orderService('Subscription')">داوا بکە</button>
+                        <button class="btn-service" onclick="orderNow('Subscription','$8')">داوا بکە ئێستا</button>
                     </div>
                 </div>
             </div>
@@ -936,21 +575,25 @@
     <div id="about" class="page">
         <section>
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">دەربارەی ئێمە</div>
-                    <h2 class="section-title">Karo Plus Iraq</h2>
-                    <p class="section-desc">پێشەنگی خزمەتگوزاری دیجیتاڵی لە عێراق لە 2019ەوە</p>
+                <div class="sec-head">
+                    <div class="badge-3d">دەربارەی ئێمە</div>
+                    <h2 class="sec-title">Karo Plus Iraq</h2>
+                    <p class="sec-desc">پێشەنگی خزمەتگوزاری دیجیتاڵی لە عێراق لە 2019ەوە</p>
                 </div>
                 
-                <div class="feature-card-3d" style="max-width:900px;margin:0 auto;">
-                    <h3 style="font-size:28px;margin-bottom:20px;color:var(--primary)">چیرۆکی ئێمە</h3>
-                    <p style="font-size:16px;line-height:2;color:var(--text-light);margin-bottom:20px">
+                <div class="card-3d" style="max-width:1000px;margin:0 auto;padding:60px">
+                    <h3 style="font-size:32px;margin-bottom:25px;color:var(--p1)">چیرۆکی ئێمە</h3>
+                    <p style="font-size:17px;line-height:2.2;color:var(--text2);margin-bottom:25px">
                         Karo Plus لە ساڵی 2019 دامەزراوە بە ئامانجی پێشکەشکردنی باشترین خزمەتگوزاری دیجیتاڵی لە عێراق. 
                         لەو کاتەوە تا ئێستا، توانیومانە متمانەی زیاتر لە 50,000 کڕیار بەدەست بهێنین.
                     </p>
-                    <p style="font-size:16px;line-height:2;color:var(--text-light)">
+                    <p style="font-size:17px;line-height:2.2;color:var(--text2);margin-bottom:25px">
                         تیمێکی پرۆفیشناڵ و شارەزامان هەیە کە 24/7 ئامادەیە بۆ خزمەتکردنت. ئامانجی ئێمە دابینکردنی 
                         خزمەتگوزاری بە کوالێتی بەرز، نرخی گونجاو، و خێرایی بێ وێنەیە.
+                    </p>
+                    <p style="font-size:17px;line-height:2.2;color:var(--text2)">
+                        باوەڕمان وایە کە هەر کڕیارێک شایەنی باشترین خزمەتگوزاریە. بۆیە هەمیشە هەوڵ دەدەین لە پێشەنگی 
+                        بازاڕ بین و نوێترین تەکنەلۆژیا بەکاربهێنین.
                     </p>
                 </div>
             </div>
@@ -961,10 +604,10 @@
     <div id="contact" class="page">
         <section>
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">پەیوەندی</div>
-                    <h2 class="section-title">پەیوەندیمان پێوە بکە</h2>
-                    <p class="section-desc">تیمەکەمان ئامادەیە بۆ وەڵامدانەوەی هەموو پرسیارێکت</p>
+                <div class="sec-head">
+                    <div class="badge-3d">پەیوەندی</div>
+                    <h2 class="sec-title">پەیوەندیمان پێوە بکە</h2>
+                    <p class="sec-desc">تیمەکەمان ئامادەیە بۆ وەڵامدانەوەی هەموو پرسیارێکت</p>
                 </div>
                 
                 <div class="contact-grid">
@@ -974,7 +617,7 @@
                             <div class="contact-details">
                                 <h4>Telegram</h4>
                                 <p>@KaroPlusSupport</p>
-                                <p style="font-size:13px;margin-top:5px">خێراترین ڕێگای پەیوەندی</p>
+                                <p style="font-size:14px;margin-top:8px;color:var(--text2)">خێراترین ڕێگای پەیوەندی - وەڵامی خێرا</p>
                             </div>
                         </div>
                         
@@ -983,7 +626,7 @@
                             <div class="contact-details">
                                 <h4>WhatsApp</h4>
                                 <p>+964 XXX XXX XXXX</p>
-                                <p style="font-size:13px;margin-top:5px">24/7 بەردەستە</p>
+                                <p style="font-size:14px;margin-top:8px;color:var(--text2)">24/7 بەردەستە بۆ خزمەتت</p>
                             </div>
                         </div>
                         
@@ -992,7 +635,7 @@
                             <div class="contact-details">
                                 <h4>Email</h4>
                                 <p>support@karoplus.iq</p>
-                                <p style="font-size:13px;margin-top:5px">وەڵام لە 24 کاتژمێردا</p>
+                                <p style="font-size:14px;margin-top:8px;color:var(--text2)">وەڵام لە ماوەی 24 کاتژمێردا</p>
                             </div>
                         </div>
                         
@@ -1006,7 +649,7 @@
                         </div>
                     </div>
                     
-                    <div class="feature-card-3d">
-                        <h3 style="font-size:24px;margin-bottom:20px;color:var(--primary)">داواکاری خێرا</h3>
-                        <p style="margin-bottom:25px;color:var(--text-light)">
-                           
+                    <div class="feat-card">
+                        <div class="feat-icon">🎯</div>
+                        <h3>داواکاری خێرا</h3>
+                        <p style="margin-bottom:30px">بۆ داواکردنی خێرا، ڕاستەوخۆ پەیوەندی بە تیمەکەمانەوە بکە لە Telegram
